@@ -1,0 +1,68 @@
+[
+    {
+        "category": "header",
+        "title": "Headers",
+        "blocks": [
+            {
+                "action": "left",
+                "img": "/images/header_left.png"
+            },
+            {
+                "action": "center",
+                "img": "/images/header_center.png"
+            },
+            {
+                "action": "right",
+                "img": "/images/header_right.png"
+            }
+        ]
+    },
+    {
+        "category": "banner",
+        "title": "Banners",
+        "blocks": [
+            {
+                "action": "simple",
+                "img": "/images/banner_simple.png"
+            },
+            {
+                "action": "text",
+                "img": "/images/banner_text.png"
+            },
+            {
+                "action": "text_button",
+                "img": "/images/banner_text_button.png"
+            }
+        ]
+    },
+    {
+        "category": "text",
+        "title": "Typography",
+        "blocks": [
+            {
+                "action": "title",
+                "img": "images/typo_title.png"
+            },
+            {
+                "action": "title_para",
+                "img": "images/typo_title_para.png"
+            },
+            {
+                "action": "para",
+                "img": "images/typo_para.png"
+            },
+            {
+                "action": "double_para",
+                "img": "images/typo_double_para.png"
+            },
+            {
+                "action": "title_para_left",
+                "img": "images/typo_title_para_left.png"
+            },
+            {
+                "action": "title_para_button",
+                "img": "images/typo_title_para_button.png"
+            }
+        ]
+    }
+]

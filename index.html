@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Builder</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="style.css">
+    <script src="assets/jquery.js"></script>
+    <script src="assets/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#sortable-block").sortable();
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+    <strong id="topBar"><span>Email Template Size : <span style="color: yellow;" id="email-size"></span></span><span
+            style="margin-left: auto;">Developer by : <span style="color: yellow;">Karthikeyan</span></span></strong>
+    <header class="emailBuilderEdits">
+        <img width="250" src="/logo.png" alt="Email Builder">
+        <button id="addNewBlock"></button>
+        <button id="closeOnMob">Close Menu</button>
+        <div class="title-inputs">
+            <input id="emailTitle" type="text" value="my-email-template">
+            <button id="saveButton"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                    viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M14 24v-2h8v2zm4-3l-4-4l1.4-1.4l1.6 1.6v-4.175h2V17.2l1.6-1.6L22 17zM6 20q-.825 0-1.412-.587T4 18V4q0-.825.588-1.412T6 2h7l6 6v3.025h-7V20zm6-11h5l-5-5z" />
+                </svg> <span id="save"></span></button>
+        </div>
+        <div style="display: flex; gap: 1rem;margin-right: 1rem;">
+            <button id="undo" class="inactive"><svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem"
+                    viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M7 19v-2h7.1q1.575 0 2.738-1T18 13.5T16.838 11T14.1 10H7.8l2.6 2.6L9 14L4 9l5-5l1.4 1.4L7.8 8h6.3q2.425 0 4.163 1.575T20 13.5t-1.737 3.925T14.1 19z" />
+                </svg></button>
+            <button id="redo" class="inactive"><svg style="transform:scaleX(-1);" xmlns="http://www.w3.org/2000/svg"
+                    width="1rem" height="1rem" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M7 19v-2h7.1q1.575 0 2.738-1T18 13.5T16.838 11T14.1 10H7.8l2.6 2.6L9 14L4 9l5-5l1.4 1.4L7.8 8h6.3q2.425 0 4.163 1.575T20 13.5t-1.737 3.925T14.1 19z" />
+                </svg></button>
+
+        </div>
+
+    </header>
+    <aside id="builder" class="goTop">
+    </aside>
+    <section id="preview">
+        <!-- preview html start -->
+        <div class="container saveThisEmail" id="sortable-block"></div>
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: aliceblue;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                border-radius: 30px;
+            }
+        </style>
+        <!-- preview html end -->
+    </section>
+    <div id="blockControls">
+
+    </div>
+    <div id="trashBlocks">
+        <h1 class="color" style="margin-left: 1rem;">Trashed Blocks</h1>
+        <div class="trashBlocks"></div>
+        <div class="closeThis"></div>
+    </div>
+    <script type="module" src="script.js"></script>
+    <datalist id="top_color">
+        <option value="#ffc196">Peach Fuzz</option>
+        <option value="#bb2649">Viva Magenta</option>
+        <option value="#6667ab">Veri Peri</option>
+        <option value="#f5df4d">Illuminating</option>
+        <option value="#939597">Ultimate Gray</option>
+        <option value="#0f4c81">Classic Blue</option>
+        <option value="#ff6f61">Living Coral</option>
+        <option value="#6b5b95">Ultra Violet</option>
+        <option value="#88b04b">Greenery</option>
+        <option value="#f7cac9">Rose Quartz</option>
+        <option value="#92a8d1">Serenity</option>
+        <option value="#955251">Marsala</option>
+        <option value="#b565a7">Radiand Orchid</option>
+        <option value="#009b77">Emerald</option>
+        <option value="#dd4124">Tangerine Tango</option>
+        <option value="#d65076">Honeysucle</option>
+        <option value="#45b8ac">Turquoise</option>
+        <option value="#efc050">Mimosa</option>
+        <option value="#5b5ea6">Blue Izis</option>
+        <option value="#9b2335">Chili Pepper</option>
+        <option value="#dfcfbe">Sand Dollar</option>
+        <option value="#55b4b0">Blue Turquoise</option>
+        <option value="#e15d44">Tigerlily</option>
+        <option value="#7fcdcd">Aqua Sky</option>
+        <option value="#bc243c">True Red</option>
+        <option value="#c3447a">Fuchsia Rose</option>
+        <option value="#98b4d4">Cerulean Blue</option>
+    </datalist>
+
+
+
+    <script>
+        document.querySelector("#closeOnMob").addEventListener("click", () => {
+            if (document.querySelector('#builder').classList.contains("mobClose")) document.querySelector('#builder').classList.remove("mobClose");
+            if (document.querySelector('#blockControls').classList.contains("mobClose")) document.querySelector('#blockControls').classList.remove("mobClose");
+        })
+    </script>
+</body>
+
+</html>

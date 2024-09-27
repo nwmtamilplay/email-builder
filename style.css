@@ -1,0 +1,787 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color);
+    border-radius: 100vw;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 500px 1fr 500px;
+    grid-template-rows: 30px 75px 1fr;
+    --color: slateblue;
+    overflow: hidden;
+}
+
+
+
+#topBar {
+    background-color: var(--color);
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-inline: 1rem;
+    color: whitesmoke;
+}
+
+header {
+    padding-inline: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    grid-column: 1/-1;
+    background-color: white;
+    z-index: 999;
+}
+
+header button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 1rem;
+    color: white;
+    background-color: var(--color);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+header input {
+    border: none;
+    font-size: 1.5rem;
+    text-align: center;
+    outline: 1px solid var(--color);
+    border-radius: 5px;
+    padding: 5px 1rem;
+    color: var(--color);
+}
+
+header .title-inputs {
+    margin-left: auto;
+    margin-right: 3rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#saveButton {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-weight: 700;
+}
+
+.color {
+    color: var(--color);
+}
+
+aside#builder {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: lightsteelblue;
+    box-sizing: border-box;
+    padding: 1rem;
+    z-index: 998;
+}
+
+section#preview {
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: hsl(226, 65%, 93%);
+    scroll-behavior: smooth;
+}
+
+
+
+
+
+#trashBlocks {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    background-color: white;
+    z-index: 99999;
+    transform: translateX(100%);
+    filter: drop-shadow(0 0 10px hsla(0, 0%, 0%, 0.1));
+    transition: 0.3s;
+    border-right: 1px solid var(--color);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5rem 1fr;
+    counter-reset: trash-count;
+}
+
+.trashBlocks {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+#trashBlocks .trashItems {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 5px 5px hsla(0, 0%, 0%, 0.1);
+    font-weight: 600;
+    margin-top: 1rem;
+    position: relative;
+    color: white;
+    background-color: slateblue;
+    background-image: url(https://api.iconify.design/line-md:backup-restore.svg?color=yellow);
+    background-size: auto 2.5rem;
+    background-position: right 10px top 10px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 3rem;
+    grid-template-rows: 3rem 1fr;
+    counter-increment: trash-count;
+}
+
+#trashBlocks .trashItems canvas {
+    width: 100% !important;
+    height: auto !important;
+    grid-column: 1/3;
+    grid-row: 2/3;
+}
+
+#trashBlocks .trashItems div {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+#trashBlocks .trashItems div span {
+    color: yellow;
+}
+
+#trashBlocks.active {
+    transform: translateX(0%);
+}
+
+#trashBlocks .closeThis {
+    position: absolute;
+    right: 100%;
+    bottom: 3rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--color);
+    background-image: url(https://api.iconify.design/material-symbols:delete.svg?color=white);
+    background-position: center;
+    background-size: 80%;
+    z-index: 9999;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#trashBlocks .closeThis.active {
+    background-image: url(https://api.iconify.design/material-symbols:close-rounded.svg?color=white);
+}
+
+#trashBlocks .closeThis::before {
+    content: counter(trash-count);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.add-blocks button {
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 10px 1rem;
+    color: white;
+    background-color: var(--color);
+    cursor: pointer;
+}
+
+.add-blocks button:active {
+    filter: contrast(2);
+}
+
+.add-blocks button.active {
+    filter: contrast(2);
+}
+
+.add-blocks .title {
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: var(--color);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    transition: .3s;
+}
+
+.add-blocks .addThis {
+    margin-block: 1rem;
+}
+
+.add-blocks .addThis img {
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-blocks:has(.addThis:hover) .addThis:has(img:hover) img {
+    box-shadow: 0 0 10px var(--color);
+}
+
+.add-blocks:has(.addThis:hover) .addThis:has(img:not(:hover)) img {
+    transform: scale(0.95);
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.3);
+}
+
+
+.add-blocks .title::before {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    width: 2rem;
+    height: 2rem;
+    background-image: url(https://api.iconify.design/material-symbols:add-rounded.svg?color=white);
+    background-size: contain;
+    transition: .3s;
+}
+
+.add-blocks .title.active {
+    background-color: var(--color);
+    color: white;
+}
+
+.add-blocks .title.active::before {
+    transform: translateY(-50%) rotate(45deg);
+    background-image: url(https://api.iconify.design/material-symbols:add-rounded.svg?color=white);
+}
+
+.add-blocks .block-options:not(.active) {
+    display: none;
+}
+
+.add-blocks .block-options {}
+
+
+#blockControls {
+    overflow-y: scroll;
+    z-index: 998;
+    background-color: white;
+}
+
+#blockControls::before {
+    content: "Edit Block";
+    padding: 1rem 1rem 0rem 1rem;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color);
+}
+
+#blockControls .divider {
+    background-color: var(--color);
+    padding: 1rem;
+    color: white;
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+    /* outline: 1px solid black; */
+}
+
+#blockControls input[type="checkbox"]:checked+.divider {
+    background-color: var(--color);
+    color: white;
+}
+
+#blockControls .divider h5 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+#blockControls .divider label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#blockControls .divider label::before {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    width: 2rem;
+    height: 2rem;
+    background-image: url(https://api.iconify.design/material-symbols:add-rounded.svg?color=white);
+    background-size: contain;
+    transition: .3s;
+}
+
+#blockControls input[type="checkbox"]:checked+.divider label::before {
+    transform: translateY(-50%) rotate(45deg);
+    background-image: url(https://api.iconify.design/material-symbols:add-rounded.svg?color=white);
+}
+
+#blockControls .divider_controls:not(.show) {
+    display: none !important;
+}
+
+/* #blockControls .divider_controls {
+    animation: show 0.3s ease-out forwards;
+}
+
+@keyframes show {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+} */
+
+#blockControls .blockOptions_section {
+    width: 100%;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: max-content;
+}
+
+#blockControls .blockOptions_section:not(.active) {
+    display: none !important;
+}
+
+#blockControls .blockOptions_section h2 {
+    margin-block: 0 10px;
+}
+
+#blockControls .blockOptions_section select option {
+    font-weight: 600;
+}
+
+input[type="color"] {
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    width: 10px !important;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#blockControls .blockOptions_section .color {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: 1px solid var(--color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#blockControls .block-options:has(input[type="color"]) {
+    display: flex;
+}
+
+#blockControls .blockOptions_section .color::before {
+    content: attr(data-name);
+    color: currentColor;
+    filter: invert(1);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+#blockControls .blockOptions_section select {
+    border: none;
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.3);
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem;
+    color: hsl(0, 0%, 30%);
+    accent-color: var(--color);
+}
+
+#blockControls .blockOptions_section input {
+    border: none;
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.3);
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem;
+    color: hsl(0, 0%, 30%);
+    accent-color: var(--color);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#blockControls .blockOptions_section .blockOptions:has(> input[type="file"]) {
+    display: flex;
+    flex-direction: column;
+}
+
+#blockControls .blockOptions_section .blockOptions:has(> input[type="file"])::after {
+    content: "Upload";
+    font-size: 1rem;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 1rem 1rem;
+    color: white;
+    background-color: var(--color);
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Change track (line) color */
+#blockControls .blockOptions_section input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(105, 90, 205, 0.5);
+    /* Line color */
+    border-radius: 5px;
+}
+
+/* Change ball (thumb) color */
+#blockControls .blockOptions_section input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--color);
+    /* Ball color */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#blockControls .blockOptions_section .blockOptions {
+    position: relative;
+}
+
+#blockControls .blockOptions_section .blockOptions [data-info] {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-image: url(https://api.iconify.design/material-symbols:info-outline-rounded.svg?color=black);
+    background-size: cover;
+    cursor: pointer;
+}
+
+#blockControls .blockOptions_section .blockOptions h5:has([data-info]) {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#blockControls .blockOptions_section .blockOptions [data-info]::before {
+    position: absolute;
+    right: 110%;
+    top: 0%;
+    content: attr(data-info);
+    background-color: black;
+    color: whitesmoke;
+    width: max-content;
+    max-width: 250px;
+    padding: 1rem;
+    text-align: center;
+    box-sizing: content-box;
+    text-wrap: balance;
+    font-size: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px 10px hsla(0, 0%, 0%, 0.1);
+    line-height: 1.8;
+}
+
+#blockControls .blockOptions_section .blockOptions [data-info]:hover::before {
+    opacity: 1;
+}
+
+/* Change ball (thumb) color */
+#blockControls .blockOptions_section .blockOptions:has(input[type="range"])::after {
+    content: attr(data-value);
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    color: var(--color);
+    font-weight: 600;
+}
+
+#blockControls .blockOptions_section textarea {
+    min-height: 90px;
+    overflow-y: hidden;
+    resize: none;
+    border: none;
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.3);
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem;
+    color: hsl(0, 0%, 30%);
+}
+
+.blockOptions {
+    padding: 0.3rem;
+}
+
+.inactive {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.email-blocks {
+    background: transparent;
+    position: relative;
+    isolation: isolate;
+}
+
+.email-blocks .deleteThis {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 0.5rem;
+    cursor: pointer;
+    background-color: white;
+    background-image: url(https://api.iconify.design/material-symbols:remove-selection.svg?color=red);
+    background-size: contain;
+    background-position: center;
+    box-shadow: 0 0 5px 5px hsla(0, 0%, 0%, 0.1);
+    border-radius: 5px;
+}
+
+.email-blocks .cloneThis {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: calc(100% + 10px);
+    top: calc(1.5rem + 30px);
+    cursor: pointer;
+    background-color: white;
+    background-image: url(https://api.iconify.design/octicon:duplicate-16.svg?color=slateblue);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 5px 5px hsla(0, 0%, 0%, 0.1);
+    border-radius: 5px;
+}
+
+.email-blocks::before {
+    content: "";
+    width: 150%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -1;
+}
+
+.email-blocks.selected_block {
+    background-color: hsl(248, 53%, 58%, 0.1);
+    box-shadow: 550px 0 0px hsl(248, 53%, 58%, 0.1), -550px 0 0px hsl(248, 53%, 58%, 0.1);
+}
+
+#save::before {
+    content: 'Save as HTML';
+}
+
+#undo,
+#redo {
+    font-size: 1.5rem;
+}
+
+@media (width >=1800px) {
+    #addNewBlock {
+        display: none;
+    }
+
+
+}
+
+@media (width < 1800px) {
+    #addNewBlock.hide {
+        display: none;
+    }
+
+
+    #addNewBlock::before {
+        content: 'Add New Block';
+        font-weight: 600;
+    }
+
+    body {
+        grid-template-columns: 500px 1fr;
+        grid-template-rows: 30px 75px 1fr;
+    }
+
+    aside#builder {
+        grid-column: 1/2;
+        grid-row: 3/4;
+    }
+
+    #blockControls {
+        grid-column: 1/2;
+        grid-row: 3/4;
+    }
+
+    .goTop {
+        z-index: 9999 !important;
+    }
+
+    section#preview {
+        grid-column: 2/3;
+        grid-row: 3/5;
+    }
+}
+
+@media (width < 1300px) {
+    body {
+        grid-template-columns: 400px 1fr;
+        grid-template-rows: 30px 75px 1fr;
+    }
+
+    #addNewBlock::before {
+        content: 'Add Block';
+    }
+
+    #save::before {
+        content: 'Save';
+    }
+}
+
+@media (width > 1200px) {
+    #closeOnMob {
+        display: none;
+    }
+}
+
+@media (width < 1200px) and (orientation: portrait) {
+    body * {
+        display: none !important;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-size: 2rem;
+    }
+
+    body::before {
+        content: "Rotate Your Device on landscape mode";
+        text-align: center;
+    }
+}
+
+
+@media (width < 1200px) {
+    body {
+        grid-template-columns: 400px 1fr;
+        grid-template-rows: 30px 50px 1fr;
+    }
+
+    #emailTitle {
+        display: none;
+    }
+
+    section#preview {
+        grid-column: 1/3;
+        grid-row: 3/5;
+    }
+
+    #addNewBlock,
+    #closeOnMob {
+        padding: 7px 10px;
+    }
+
+    #closeOnMob {
+        background-color: red;
+        font-weight: 600;
+    }
+
+    #addNewBlock::before {
+        content: 'ADD';
+    }
+
+    #saveButton {
+        font-size: 12px;
+        display: block;
+        padding: 5px 10px;
+    }
+
+    #save::before {
+        content: none;
+        display: none;
+    }
+
+    header {
+        display: grid;
+        grid-template-columns: 1fr 5rem 7rem 2rem 2rem 3rem;
+    }
+
+    header img {
+        width: 150px;
+    }
+
+
+    #undo,
+    #redo {
+        font-size: 20px;
+        padding: 5px 10px;
+    }
+
+    aside#builder,
+    #blockControls {
+        transform: translateX(-100%);
+    }
+
+    aside#builder.mobClose,
+    #blockControls.mobClose {
+        transform: translateX(0%);
+    }
+
+
+
+
+}
