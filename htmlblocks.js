@@ -6,12 +6,12 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Background Settings",
+                    name: "Block Settings",
                     field: "divider",
                     id: "divider_1"
                 },
                 {
-                    gridColumn: "span 2",
+                    gridColumn: "span 1",
                     gridRow: "span 1",
                     name: "Background",
                     for: ".header-div",
@@ -24,16 +24,33 @@ export const blocks = {
                     dividerID: "divider_1",
                 },
                 {
-                    gridColumn: "span 1",
+                    gridColumn: "span 2",
                     gridRow: "span 1",
                     name: "Top Radius",
-                    replace: "$ $ 0px 0px",
                     for: ".header-div",
-                    field: "input",
-                    default: "30px",
-                    inputFault: "30px",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px $px 0px 0px",
+                    default: 30,
+                    inputFault: 30,
                     inputChange: ['style', 'borderRadius'],
                     change: ['style', 'borderRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".header-div-padding",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 20,
+                    inputFault: 20,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
                     dividerID: "divider_1",
                 },
                 {
@@ -46,11 +63,11 @@ export const blocks = {
                 {
                     gridColumn: "span 2",
                     gridRow: "span 1",
-                    name: "Image Url",
+                    name: "Logo Url",
                     for: ".logo-img",
                     field: "input",
-                    default: "https://placehold.co/80x50/slateblue/FFF?text=LOGO",
-                    inputFault: "https://placehold.co/80x50/slateblue/FFF?text=LOGO",
+                    default: "/logo.png",
+                    inputFault: "/logo.png",
                     inputChange: ["src"],
                     change: ["src"],
                     dividerID: "divider_2",
@@ -58,10 +75,10 @@ export const blocks = {
                 {
                     gridColumn: "span 1",
                     gridRow: "span 1",
-                    name: "Upload",
+                    name: "Upload Logo",
                     for: ".logo-img",
                     field: "input_file",
-                    sizeLimit: 30,
+                    sizeLimit: 100,
                     inputChange: ["src"],
                     change: ["src"],
                     dividerID: "divider_2",
@@ -72,8 +89,8 @@ export const blocks = {
                     name: "Width",
                     for: ".logo-img",
                     field: "input",
-                    default: "80px",
-                    inputFault: "80px",
+                    default: "250px",
+                    inputFault: "250px",
                     inputChange: ['style', 'width'],
                     change: ['style', 'width'],
                     dividerID: "divider_2",
@@ -84,10 +101,22 @@ export const blocks = {
                     name: "Height",
                     for: ".logo-img",
                     field: "input",
-                    default: "50px",
-                    inputFault: "50px",
+                    default: "auto",
+                    inputFault: "auto",
                     inputChange: ['style', 'height'],
                     change: ['style', 'height'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".logo-img",
+                    field: "input",
+                    default: "0px",
+                    inputFault: "0px",
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
                     dividerID: "divider_2",
                 },
                 {
@@ -96,10 +125,23 @@ export const blocks = {
                     name: "Radius",
                     for: ".logo-img",
                     field: "input",
-                    default: "5px",
-                    inputFault: "5px",
+                    default: "0px",
+                    inputFault: "0px",
                     inputChange: ['style', 'borderRadius'],
                     change: ['style', 'borderRadius'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".logo-img",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
                     dividerID: "divider_2",
                 },
                 {
@@ -117,32 +159,30 @@ export const blocks = {
                     for: ".header_links",
                     field: "textarea",
                     inputFault: "Home\nAbout\nContent",
-                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
-                    inputChange: ['textContent'],
+                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
+                    inputChange: ['innerHTML'],
                     change: ['innerHTML'],
-                    createElement: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Link</a>`,
                     keepValues: [["href"], ["style"]],
                     dividerID: "divider_3",
                 },
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Link Url",
+                    name: "Link To Url",
                     info: "Please enter the corresponding URL for each link text, one per line.",
                     for: ".header_links",
                     field: "textarea",
                     inputFault: "#insertUrlLink\n#insertUrlLink\n#insertUrlLink",
-                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
+                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
                     inputChange: ['href'],
                     change: ['innerHTML'],
-                    createElement: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Link</a>`,
                     keepValues: [["innerHTML"], ["style"]],
                     dividerID: "divider_3",
                 },
                 {
-                    gridColumn: "span 3",
+                    gridColumn: "span 1",
                     gridRow: "span 1",
-                    name: "Font Color",
+                    name: "Link Color",
                     for: ".header_links a",
                     field: "input_color",
                     default: "#000000",
@@ -153,9 +193,37 @@ export const blocks = {
                     dividerID: "divider_3",
                 },
                 {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".header_links a",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 600,
+                    inputFault: 600,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_3",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Link Gap",
+                    for: ".header_links a",
+                    field: "input_range",
+                    min: 5,
+                    max: 30,
+                    replace: "$px",
+                    default: 8,
+                    inputFault: 8,
+                    inputChange: ['style', 'paddingRight'],
+                    change: ['style', 'paddingRight'],
+                    dividerID: "divider_3",
+                },
+                {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Link FontSize 13px - 24px",
+                    name: "Link Text FontSize 13px - 24px",
                     for: ".header_links a",
                     field: "input_range",
                     min: 13,
@@ -175,12 +243,12 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Background Settings",
+                    name: "Block Settings",
                     field: "divider",
                     id: "divider_1"
                 },
                 {
-                    gridColumn: "span 2",
+                    gridColumn: "span 1",
                     gridRow: "span 1",
                     name: "Background",
                     for: ".header-div",
@@ -193,16 +261,33 @@ export const blocks = {
                     dividerID: "divider_1",
                 },
                 {
-                    gridColumn: "span 1",
+                    gridColumn: "span 2",
                     gridRow: "span 1",
                     name: "Top Radius",
-                    replace: "$ $ 0px 0px",
                     for: ".header-div",
-                    field: "input",
-                    default: "30px",
-                    inputFault: "30px",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px $px 0px 0px",
+                    default: 30,
+                    inputFault: 30,
                     inputChange: ['style', 'borderRadius'],
                     change: ['style', 'borderRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".header-div-padding",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 20,
+                    inputFault: 20,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
                     dividerID: "divider_1",
                 },
                 {
@@ -215,11 +300,11 @@ export const blocks = {
                 {
                     gridColumn: "span 2",
                     gridRow: "span 1",
-                    name: "Image Url",
+                    name: "Logo Url",
                     for: ".logo-img",
                     field: "input",
-                    default: "https://placehold.co/80x50/slateblue/FFF?text=LOGO",
-                    inputFault: "https://placehold.co/80x50/slateblue/FFF?text=LOGO",
+                    default: "/icon.png",
+                    inputFault: "/icon.png",
                     inputChange: ["src"],
                     change: ["src"],
                     dividerID: "divider_2",
@@ -227,10 +312,10 @@ export const blocks = {
                 {
                     gridColumn: "span 1",
                     gridRow: "span 1",
-                    name: "Upload",
+                    name: "Upload Logo",
                     for: ".logo-img",
                     field: "input_file",
-                    sizeLimit: 30,
+                    sizeLimit: 100,
                     inputChange: ["src"],
                     change: ["src"],
                     dividerID: "divider_2",
@@ -241,8 +326,8 @@ export const blocks = {
                     name: "Width",
                     for: ".logo-img",
                     field: "input",
-                    default: "80px",
-                    inputFault: "80px",
+                    default: "250px",
+                    inputFault: "250px",
                     inputChange: ['style', 'width'],
                     change: ['style', 'width'],
                     dividerID: "divider_2",
@@ -253,10 +338,22 @@ export const blocks = {
                     name: "Height",
                     for: ".logo-img",
                     field: "input",
-                    default: "50px",
-                    inputFault: "50px",
+                    default: "auto",
+                    inputFault: "auto",
                     inputChange: ['style', 'height'],
                     change: ['style', 'height'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".logo-img",
+                    field: "input",
+                    default: "0px",
+                    inputFault: "0px",
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
                     dividerID: "divider_2",
                 },
                 {
@@ -265,10 +362,23 @@ export const blocks = {
                     name: "Radius",
                     for: ".logo-img",
                     field: "input",
-                    default: "5px",
-                    inputFault: "5px",
+                    default: "0px",
+                    inputFault: "0px",
                     inputChange: ['style', 'borderRadius'],
                     change: ['style', 'borderRadius'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".logo-img",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
                     dividerID: "divider_2",
                 },
                 {
@@ -286,32 +396,30 @@ export const blocks = {
                     for: ".header_links",
                     field: "textarea",
                     inputFault: "Home\nAbout\nContent",
-                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
-                    inputChange: ['textContent'],
+                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
+                    inputChange: ['innerHTML'],
                     change: ['innerHTML'],
-                    createElement: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Link</a>`,
                     keepValues: [["href"], ["style"]],
                     dividerID: "divider_3",
                 },
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Link Url",
+                    name: "Link To Url",
                     info: "Please enter the corresponding URL for each link text, one per line.",
                     for: ".header_links",
                     field: "textarea",
                     inputFault: "#insertUrlLink\n#insertUrlLink\n#insertUrlLink",
-                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
+                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
                     inputChange: ['href'],
                     change: ['innerHTML'],
-                    createElement: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Link</a>`,
                     keepValues: [["innerHTML"], ["style"]],
                     dividerID: "divider_3",
                 },
                 {
-                    gridColumn: "span 3",
+                    gridColumn: "span 1",
                     gridRow: "span 1",
-                    name: "Font Color",
+                    name: "Link Color",
                     for: ".header_links a",
                     field: "input_color",
                     default: "#000000",
@@ -322,9 +430,37 @@ export const blocks = {
                     dividerID: "divider_3",
                 },
                 {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".header_links a",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 600,
+                    inputFault: 600,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_3",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Link Gap",
+                    for: ".header_links a",
+                    field: "input_range",
+                    min: 5,
+                    max: 30,
+                    replace: "$px",
+                    default: 8,
+                    inputFault: 8,
+                    inputChange: ['style', 'paddingRight'],
+                    change: ['style', 'paddingRight'],
+                    dividerID: "divider_3",
+                },
+                {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Link FontSize 13px - 24px",
+                    name: "Link Text FontSize 13px - 24px",
                     for: ".header_links a",
                     field: "input_range",
                     min: 13,
@@ -344,12 +480,12 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Background Settings",
+                    name: "Block Settings",
                     field: "divider",
                     id: "divider_1"
                 },
                 {
-                    gridColumn: "span 2",
+                    gridColumn: "span 1",
                     gridRow: "span 1",
                     name: "Background",
                     for: ".header-div",
@@ -362,16 +498,33 @@ export const blocks = {
                     dividerID: "divider_1",
                 },
                 {
-                    gridColumn: "span 1",
+                    gridColumn: "span 2",
                     gridRow: "span 1",
                     name: "Top Radius",
-                    replace: "$ $ 0px 0px",
                     for: ".header-div",
-                    field: "input",
-                    default: "30px",
-                    inputFault: "30px",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px $px 0px 0px",
+                    default: 30,
+                    inputFault: 30,
                     inputChange: ['style', 'borderRadius'],
                     change: ['style', 'borderRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".header-div-padding",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 20,
+                    inputFault: 20,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
                     dividerID: "divider_1",
                 },
                 {
@@ -384,11 +537,11 @@ export const blocks = {
                 {
                     gridColumn: "span 2",
                     gridRow: "span 1",
-                    name: "Image Url",
+                    name: "Logo Url",
                     for: ".logo-img",
                     field: "input",
-                    default: "https://placehold.co/80x50/slateblue/FFF?text=LOGO",
-                    inputFault: "https://placehold.co/80x50/slateblue/FFF?text=LOGO",
+                    default: "/logo.png",
+                    inputFault: "/logo.png",
                     inputChange: ["src"],
                     change: ["src"],
                     dividerID: "divider_2",
@@ -396,10 +549,10 @@ export const blocks = {
                 {
                     gridColumn: "span 1",
                     gridRow: "span 1",
-                    name: "Upload",
+                    name: "Upload Logo",
                     for: ".logo-img",
                     field: "input_file",
-                    sizeLimit: 30,
+                    sizeLimit: 100,
                     inputChange: ["src"],
                     change: ["src"],
                     dividerID: "divider_2",
@@ -410,8 +563,8 @@ export const blocks = {
                     name: "Width",
                     for: ".logo-img",
                     field: "input",
-                    default: "80px",
-                    inputFault: "80px",
+                    default: "250px",
+                    inputFault: "250px",
                     inputChange: ['style', 'width'],
                     change: ['style', 'width'],
                     dividerID: "divider_2",
@@ -422,10 +575,22 @@ export const blocks = {
                     name: "Height",
                     for: ".logo-img",
                     field: "input",
-                    default: "50px",
-                    inputFault: "50px",
+                    default: "auto",
+                    inputFault: "auto",
                     inputChange: ['style', 'height'],
                     change: ['style', 'height'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".logo-img",
+                    field: "input",
+                    default: "0px",
+                    inputFault: "0px",
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
                     dividerID: "divider_2",
                 },
                 {
@@ -434,10 +599,23 @@ export const blocks = {
                     name: "Radius",
                     for: ".logo-img",
                     field: "input",
-                    default: "5px",
-                    inputFault: "5px",
+                    default: "0px",
+                    inputFault: "0px",
                     inputChange: ['style', 'borderRadius'],
                     change: ['style', 'borderRadius'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".logo-img",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
                     dividerID: "divider_2",
                 },
                 {
@@ -455,32 +633,30 @@ export const blocks = {
                     for: ".header_links",
                     field: "textarea",
                     inputFault: "Home\nAbout\nContent",
-                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
-                    inputChange: ['textContent'],
+                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
+                    inputChange: ['innerHTML'],
                     change: ['innerHTML'],
-                    createElement: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Link</a>`,
                     keepValues: [["href"], ["style"]],
                     dividerID: "divider_3",
                 },
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Link Url",
+                    name: "Link To Url",
                     info: "Please enter the corresponding URL for each link text, one per line.",
                     for: ".header_links",
                     field: "textarea",
                     inputFault: "#insertUrlLink\n#insertUrlLink\n#insertUrlLink",
-                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
+                    default: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;"> Home</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">About</a><a href="#insertUrlLink"style="display:inline-block;color:#000000;font-weight:600;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Contact</a>`,
                     inputChange: ['href'],
                     change: ['innerHTML'],
-                    createElement: `<a href="#insertUrlLink" style="display:inline-block;color:#000000;font-weight:700;font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:0;text-decoration:none;text-transform:none;padding:0;padding-top:0;padding-left:0;padding-right:8px;padding-bottom:0;text-decoration: none;">Link</a>`,
                     keepValues: [["innerHTML"], ["style"]],
                     dividerID: "divider_3",
                 },
                 {
-                    gridColumn: "span 3",
+                    gridColumn: "span 1",
                     gridRow: "span 1",
-                    name: "Font Color",
+                    name: "Link Color",
                     for: ".header_links a",
                     field: "input_color",
                     default: "#000000",
@@ -491,9 +667,37 @@ export const blocks = {
                     dividerID: "divider_3",
                 },
                 {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".header_links a",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 600,
+                    inputFault: 600,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_3",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Link Gap",
+                    for: ".header_links a",
+                    field: "input_range",
+                    min: 5,
+                    max: 30,
+                    replace: "$px",
+                    default: 8,
+                    inputFault: 8,
+                    inputChange: ['style', 'paddingRight'],
+                    change: ['style', 'paddingRight'],
+                    dividerID: "divider_3",
+                },
+                {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Link FontSize 13px - 24px",
+                    name: "Link Text FontSize 13px - 24px",
                     for: ".header_links a",
                     field: "input_range",
                     min: 13,
@@ -513,8 +717,49 @@ export const blocks = {
             html: '/blocks/banner/banner-simple.html',
             options: [
                 {
-                    // Banner Img Url
                     gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_1"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".simple_banner_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".simple_banner_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Image Settings",
+                    field: "divider",
+                    id: "divider_2"
+                },
+                {
+                    gridColumn: "span 2",
                     gridRow: "span 1",
                     name: "Simple Banner Url",
                     for: ".simple_banner",
@@ -523,17 +768,18 @@ export const blocks = {
                     inputFault: "/images/banner_simple.png",
                     inputChange: ["src"],
                     change: ["src"],
+                    dividerID: "divider_2",
                 },
                 {
-                    // Banner Img File Upload
-                    gridColumn: "span 3",
+                    gridColumn: "span 1",
                     gridRow: "span 1",
                     name: "Upload",
                     for: ".simple_banner",
                     field: "input_file",
-                    sizeLimit: 50,
+                    sizeLimit: 150,
                     inputChange: ["src"],
                     change: ["src"],
+                    dividerID: "divider_2",
                 },
                 {
                     gridColumn: "span 1",
@@ -545,6 +791,7 @@ export const blocks = {
                     inputFault: "auto",
                     inputChange: ['style', 'height'],
                     change: ['style', 'height'],
+                    dividerID: "divider_2",
                 },
                 {
                     gridColumn: "span 1",
@@ -557,6 +804,7 @@ export const blocks = {
                     inputFault: "fill",
                     inputChange: ['style', 'objectFit'],
                     change: ['style', 'objectFit'],
+                    dividerID: "divider_2",
                 },
                 {
                     gridColumn: "span 1",
@@ -569,6 +817,67 @@ export const blocks = {
                     inputFault: "center",
                     inputChange: ['style', 'objectPosition'],
                     change: ['style', 'objectPosition'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".simple_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".simple_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".simple_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".simple_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_2",
                 },
             ]
         },
@@ -578,22 +887,277 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".list_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_banner_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
                     name: "Banner Background Settings",
                     field: "divider",
                     id: "divider_1"
                 },
                 {
-                    // Banner Img Url
-                    gridColumn: "span 3",
+                    gridColumn: "span 2",
                     gridRow: "span 2",
                     name: "Image Url",
                     for: ".text_banner",
                     field: "input",
-                    replace: "linear-gradient(to right, #00000050, #00000050), url('$') no-repeat center center / cover",
                     default: "/images/banner_simple.png",
                     inputFault: "/images/banner_simple.png",
+                    inputChange: ["style", "backgroundImage"],
+                    change: ["style", "backgroundImage"],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        // Retrieve the computed backgroundImage style
+                        let str = window.getComputedStyle(img).backgroundImage;
+
+                        // Regex to match the gradient direction and colors, including hex and named colors
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        // Log the matched overlay values and the new URL value
+                        // console.log('Matched overlays:', overlay, 'New image URL:', val);
+
+                        // Check if we found the expected overlay values
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${overlay[3]} , ${overlay[4]}), url('${val}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `url('${val}')`; // Fallback if overlay values aren't found
+                        }
+                    }
+
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Upload",
+                    for: ".text_banner",
+                    field: "input_file",
+                    replace: "linear-gradient(to right, #00000050, #00000050), url('$') no-repeat center center / cover",
+                    sizeLimit: 100,
                     inputChange: ["style", "background"],
                     change: ["style", "background"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Overlay Color 1",
+                    for: ".text_banner",
+                    field: "input_color",
+                    default: "linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover",
+                    inputFault: "linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "backgroundImage"],
+                    change: ["style", "backgroundImage"],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        // Retrieve the computed backgroundImage style
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+
+                        // Regex to match the gradient direction and colors, including hex and named colors
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        const rgba = (overlay[3].startsWith('rgb(')) ? overlay[3].replace('rgb', 'rgba').replace(')', ', 1)') : overlay[3];
+                        const alphaRBG = rgba.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `$4`);
+                        const newColor = val.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `rgba($1,$2,$3,${alphaRBG})`);
+                        console.log(alphaRBG)
+                        // Log the matched overlay values and the new URL value
+                        console.log('Matched overlays:', overlay, imageUrl, 'New image URL:', newColor);
+
+                        // Check if we found the expected overlay values
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${newColor}, ${overlay[4]} ), url('${imageUrl[1]}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Opacity",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    default: 50,
+                    inputFault: 50,
+                    inputChange: ['style', 'backgroundImage'],
+                    change: ['style', 'backgroundImage'],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        const rgba = (overlay[3].startsWith('rgb(')) ? overlay[3].replace('rgb', 'rgba').replace(')', ', 1)') : overlay[3];
+                        const alphaRBG = rgba.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `rgba($1,$2,$3,${Number(val) * 0.01})`);
+
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${alphaRBG} , ${overlay[4]}), url('${imageUrl[1]}') `;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Overlay Color 2",
+                    for: ".text_banner",
+                    field: "input_color",
+                    default: "linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover",
+                    inputFault: "linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "backgroundImage"],
+                    change: ["style", "backgroundImage"],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        // Retrieve the computed backgroundImage style
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+                        // Regex to match the gradient direction and colors, including hex and named colors
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        const rgba = (overlay[4].startsWith('rgb(')) ? overlay[4].replace('rgb', 'rgba').replace(')', ', 1)') : overlay[4];
+                        const alphaRBG = rgba.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `$4`);
+                        const newColor = val.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `rgba($1,$2,$3,${alphaRBG})`);
+                        console.log(alphaRBG)
+                        // Log the matched overlay values and the new URL value
+                        console.log('Matched overlays:', overlay, imageUrl, 'New image URL:', newColor);
+
+                        // Check if we found the expected overlay values
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${overlay[3]} , ${newColor}), url('${imageUrl[1]}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Opacity",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    default: 50,
+                    inputFault: 50,
+                    inputChange: ['style', 'backgroundImage'],
+                    change: ['style', 'backgroundImage'],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        const rgba = (overlay[4].startsWith('rgb(')) ? overlay[4].replace('rgb', 'rgba').replace(')', ', 1)') : overlay[4];
+                        const alphaRBG = rgba.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `rgba($1,$2,$3,${Number(val) * 0.01})`);
+
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${overlay[3]} , ${alphaRBG}), url('${imageUrl[1]}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Overlay Angle",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 360,
+                    default: 90,
+                    inputFault: 90,
+                    inputChange: ['style', 'backgroundImage'],
+                    change: ['style', 'backgroundImage'],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        console.log(`linear-gradient(${val}deg, ${overlay[3]} , ${overlay[4]}), url('${imageUrl[1]}')`)
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${val}deg, ${overlay[3]} , ${overlay[4]}), url('${imageUrl[1]}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Banner Padding 10px 0 50px",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 10,
+                    max: 100,
+                    replace: "$px",
+                    default: 16,
+                    inputFault: 16,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
                     dividerID: "divider_1",
                 },
                 {
@@ -637,16 +1201,61 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Banner Padding 10px 0 50px",
+                    name: "Radius Top Left",
                     for: ".text_banner",
                     field: "input_range",
-                    min: 10,
-                    max: 100,
+                    min: 0,
+                    max: 300,
                     replace: "$px",
-                    default: 16,
-                    inputFault: 16,
-                    inputChange: ['style', 'padding'],
-                    change: ['style', 'padding'],
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
                     dividerID: "divider_1",
                 },
                 {
@@ -664,8 +1273,8 @@ export const blocks = {
                     field: "input",
                     default: "The Beauty of Nature",
                     inputFault: "The Beauty of Nature",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_2",
                 },
                 {
@@ -737,8 +1346,8 @@ export const blocks = {
                     field: "input",
                     default: "Nature’s serenity calms the mind, its beauty inspires creativity, and every moment spent outdoors reconnects us to life’s essence.",
                     inputFault: "Nature’s serenity calms the mind, its beauty inspires creativity, and every moment spent outdoors reconnects us to life’s essence.",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_3",
                 },
                 {
@@ -803,22 +1412,277 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".list_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_banner_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
                     name: "Banner Background Settings",
                     field: "divider",
                     id: "divider_1"
                 },
                 {
-                    // Banner Img Url
-                    gridColumn: "span 3",
+                    gridColumn: "span 2",
                     gridRow: "span 2",
                     name: "Image Url",
                     for: ".text_banner",
                     field: "input",
-                    replace: "linear-gradient(to right, #00000050, #00000050), url('$') no-repeat center center / cover",
                     default: "/images/banner_simple.png",
                     inputFault: "/images/banner_simple.png",
+                    inputChange: ["style", "backgroundImage"],
+                    change: ["style", "backgroundImage"],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        // Retrieve the computed backgroundImage style
+                        let str = window.getComputedStyle(img).backgroundImage;
+
+                        // Regex to match the gradient direction and colors, including hex and named colors
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        // Log the matched overlay values and the new URL value
+                        // console.log('Matched overlays:', overlay, 'New image URL:', val);
+
+                        // Check if we found the expected overlay values
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${overlay[3]} , ${overlay[4]}), url('${val}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `url('${val}')`; // Fallback if overlay values aren't found
+                        }
+                    }
+
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Upload",
+                    for: ".text_banner",
+                    field: "input_file",
+                    replace: "linear-gradient(to right, #00000050, #00000050), url('$') no-repeat center center / cover",
+                    sizeLimit: 100,
                     inputChange: ["style", "background"],
                     change: ["style", "background"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Overlay Color 1",
+                    for: ".text_banner",
+                    field: "input_color",
+                    default: "linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover",
+                    inputFault: "linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "backgroundImage"],
+                    change: ["style", "backgroundImage"],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        // Retrieve the computed backgroundImage style
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+
+                        // Regex to match the gradient direction and colors, including hex and named colors
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        const rgba = (overlay[3].startsWith('rgb(')) ? overlay[3].replace('rgb', 'rgba').replace(')', ', 1)') : overlay[3];
+                        const alphaRBG = rgba.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `$4`);
+                        const newColor = val.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `rgba($1,$2,$3,${alphaRBG})`);
+                        console.log(alphaRBG)
+                        // Log the matched overlay values and the new URL value
+                        console.log('Matched overlays:', overlay, imageUrl, 'New image URL:', newColor);
+
+                        // Check if we found the expected overlay values
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${newColor}, ${overlay[4]} ), url('${imageUrl[1]}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Opacity",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    default: 50,
+                    inputFault: 50,
+                    inputChange: ['style', 'backgroundImage'],
+                    change: ['style', 'backgroundImage'],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        const rgba = (overlay[3].startsWith('rgb(')) ? overlay[3].replace('rgb', 'rgba').replace(')', ', 1)') : overlay[3];
+                        const alphaRBG = rgba.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `rgba($1,$2,$3,${Number(val) * 0.01})`);
+
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${alphaRBG} , ${overlay[4]}), url('${imageUrl[1]}') `;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Overlay Color 2",
+                    for: ".text_banner",
+                    field: "input_color",
+                    default: "linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover",
+                    inputFault: "linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "backgroundImage"],
+                    change: ["style", "backgroundImage"],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        // Retrieve the computed backgroundImage style
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+                        // Regex to match the gradient direction and colors, including hex and named colors
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        const rgba = (overlay[4].startsWith('rgb(')) ? overlay[4].replace('rgb', 'rgba').replace(')', ', 1)') : overlay[4];
+                        const alphaRBG = rgba.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `$4`);
+                        const newColor = val.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `rgba($1,$2,$3,${alphaRBG})`);
+                        console.log(alphaRBG)
+                        // Log the matched overlay values and the new URL value
+                        console.log('Matched overlays:', overlay, imageUrl, 'New image URL:', newColor);
+
+                        // Check if we found the expected overlay values
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${overlay[3]} , ${newColor}), url('${imageUrl[1]}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Opacity",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    default: 50,
+                    inputFault: 50,
+                    inputChange: ['style', 'backgroundImage'],
+                    change: ['style', 'backgroundImage'],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        const rgba = (overlay[4].startsWith('rgb(')) ? overlay[4].replace('rgb', 'rgba').replace(')', ', 1)') : overlay[4];
+                        const alphaRBG = rgba.replace(/rgba\((.*?),(.*?),(.*?),(.*?)\)/g, `rgba($1,$2,$3,${Number(val) * 0.01})`);
+
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${overlay[2]}, ${overlay[3]} , ${alphaRBG}), url('${imageUrl[1]}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Overlay Angle",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 360,
+                    default: 90,
+                    inputFault: 90,
+                    inputChange: ['style', 'backgroundImage'],
+                    change: ['style', 'backgroundImage'],
+                    dividerID: "divider_1",
+                    doThis: (img, val) => {
+                        let str = document.querySelector(`${img}`).style.backgroundImage;
+
+                        const overlayRegex = /(?:to\s\w+|\d{1,3}deg|rgba?\([^)]+\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/g;
+                        const overlay = str.match(overlayRegex);
+
+
+                        const imageUrlRegex = /url\(["']?([^"')]+)["']?\)/;
+                        const imageUrl = str.match(imageUrlRegex);
+
+                        console.log(`linear-gradient(${val}deg, ${overlay[3]} , ${overlay[4]}), url('${imageUrl[1]}')`)
+                        if (overlay && overlay.length >= 2) {
+                            return `linear-gradient(${val}deg, ${overlay[3]} , ${overlay[4]}), url('${imageUrl[1]}')`;
+                        } else {
+                            console.error('Overlay values not found or insufficient data:', overlay);
+                            return `linear-gradient(to right, #00000050, #00000050), url('/images/banner_simple.png') no-repeat center center / cover`; // Fallback if overlay values aren't found
+                        }
+                    }
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Banner Padding 10px 0 50px",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 10,
+                    max: 100,
+                    replace: "$px",
+                    default: 16,
+                    inputFault: 16,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
                     dividerID: "divider_1",
                 },
                 {
@@ -862,16 +1726,61 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Banner Padding 10px 0 50px",
+                    name: "Radius Top Left",
                     for: ".text_banner",
                     field: "input_range",
-                    min: 10,
-                    max: 100,
+                    min: 0,
+                    max: 300,
                     replace: "$px",
-                    default: 16,
-                    inputFault: 16,
-                    inputChange: ['style', 'padding'],
-                    change: ['style', 'padding'],
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_banner",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
                     dividerID: "divider_1",
                 },
                 {
@@ -889,8 +1798,8 @@ export const blocks = {
                     field: "input",
                     default: "The Beauty of Nature",
                     inputFault: "The Beauty of Nature",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_2",
                 },
                 {
@@ -962,8 +1871,8 @@ export const blocks = {
                     field: "input",
                     default: "Nature’s serenity calms the mind, its beauty inspires creativity, and every moment spent outdoors reconnects us to life’s essence.",
                     inputFault: "Nature’s serenity calms the mind, its beauty inspires creativity, and every moment spent outdoors reconnects us to life’s essence.",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_3",
                 },
                 {
@@ -1035,8 +1944,8 @@ export const blocks = {
                     field: "input",
                     default: "Click Here",
                     inputFault: "Click Here",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_4",
                 },
                 {
@@ -1063,6 +1972,18 @@ export const blocks = {
                     colorPath: ["style", "background"],
                     inputChange: ["style", "color"],
                     change: ["style", "color"],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Button Link",
+                    for: ".text_banner_button a",
+                    field: "input",
+                    default: "#insertUrlLink",
+                    inputFault: "#insertUrlLink",
+                    inputChange: ['href'],
+                    change: ['href'],
                     dividerID: "divider_4",
                 },
                 {
@@ -1123,25 +2044,55 @@ export const blocks = {
                 },
             ]
         }
-
     },
     text: {
         title: {
             html: '/blocks/text/title.html',
             options: [
                 {
-                    gridColumn: "span 2",
+                    gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Title Text",
-                    for: ".text_title",
-                    field: "input",
-                    default: "Email Text Title",
-                    inputFault: "Email Text Title",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
                 },
                 {
-                    gridColumn: "span 1",
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_block_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
+                    field: "divider",
+                    id: "divider_1"
+                },
+                {
+                    gridColumn: "span 3",
                     gridRow: "span 1",
                     name: "Background",
                     for: ".text_block_height",
@@ -1151,70 +2102,22 @@ export const blocks = {
                     colorPath: ["style", "background"],
                     inputChange: ["style", "background"],
                     change: ["style", "background"],
+                    dividerID: "divider_1",
                 },
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Title FontSize 30px - 70px",
-                    for: ".text_title",
-                    field: "input_range",
-                    min: 22,
-                    max: 70,
-                    replace: "$px",
-                    default: 28,
-                    inputFault: 28,
-                    inputChange: ['style', 'fontSize'],
-                    change: ['style', 'fontSize'],
-                },
-                {
-                    gridColumn: "span 1",
-                    gridRow: "span 1",
-                    name: "Text Alignment",
-                    for: ".text_title",
-                    field: "input_select",
-                    options: ["left", "center", "right",],
-                    default: "center",
-                    inputFault: "center",
-                    inputChange: ['style', 'textAlign'],
-                    change: ['style', 'textAlign'],
-                },
-                {
-                    gridColumn: "span 1",
-                    gridRow: "span 1",
-                    name: "Font Weight",
-                    for: ".text_title",
-                    field: "input_select",
-                    options: [400, 500, 600, 700, 800, 900],
-                    default: 600,
-                    inputFault: 600,
-                    inputChange: ['style', 'fontWeight'],
-                    change: ['style', 'fontWeight'],
-                },
-                {
-                    gridColumn: "span 1",
-                    gridRow: "span 1",
-                    name: "Color",
-                    for: ".text_title",
-                    field: "input_color",
-                    default: "#000000",
-                    inputFault: "#000000",
-                    colorPath: ["style", "background"],
-                    inputChange: ["style", "color"],
-                    change: ["style", "color"],
-                },
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Height 100px - 700px",
+                    name: "Height 0px - 700px",
                     for: ".text_block_height",
                     field: "input_range",
-                    min: 100,
+                    min: 0,
                     max: 700,
                     replace: "$px",
                     default: 200,
                     inputFault: 200,
                     inputChange: ['style', 'height'],
                     change: ['style', 'height'],
+                    dividerID: "divider_1",
                 },
                 {
                     gridColumn: "span 3",
@@ -1229,7 +2132,142 @@ export const blocks = {
                     inputFault: 20,
                     inputChange: ['style', 'padding'],
                     change: ['style', 'padding'],
+                    dividerID: "divider_1",
                 },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Title Settings",
+                    field: "divider",
+                    id: "divider_2"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Title Text",
+                    for: ".text_title",
+                    field: "input",
+                    default: "Email Text Title",
+                    inputFault: "Email Text Title",
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Title FontSize 30px - 70px",
+                    for: ".text_title",
+                    field: "input_range",
+                    min: 22,
+                    max: 70,
+                    replace: "$px",
+                    default: 28,
+                    inputFault: 28,
+                    inputChange: ['style', 'fontSize'],
+                    change: ['style', 'fontSize'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Text Alignment",
+                    for: ".text_title",
+                    field: "input_select",
+                    options: ["left", "center", "right",],
+                    default: "center",
+                    inputFault: "center",
+                    inputChange: ['style', 'textAlign'],
+                    change: ['style', 'textAlign'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".text_title",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 600,
+                    inputFault: 600,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Color",
+                    for: ".text_title",
+                    field: "input_color",
+                    default: "#000000",
+                    inputFault: "#000000",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "color"],
+                    change: ["style", "color"],
+                    dividerID: "divider_2",
+                },
+
             ]
         },
         title_para: {
@@ -1238,7 +2276,42 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Background Settings",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_block_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
                     field: "divider",
                     id: "divider_1"
                 },
@@ -1285,6 +2358,66 @@ export const blocks = {
                     change: ['style', 'padding'],
                     dividerID: "divider_1",
                 },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_1",
+                },
 
                 {
                     gridColumn: "span 3",
@@ -1301,8 +2434,8 @@ export const blocks = {
                     field: "input",
                     default: "Email Text Title",
                     inputFault: "Email Text Title",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_2",
                 },
                 {
@@ -1374,8 +2507,8 @@ export const blocks = {
                     field: "input",
                     default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
                     inputFault: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_3",
                 },
                 {
@@ -1440,7 +2573,42 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Background Settings",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_block_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
                     field: "divider",
                     id: "divider_1"
                 },
@@ -1460,14 +2628,14 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Height 100px - 700px",
+                    name: "Height 0px - 700px",
                     for: ".text_block_height",
                     field: "input_range",
-                    min: 100,
+                    min: 0,
                     max: 700,
                     replace: "$px",
-                    default: 140,
-                    inputFault: 140,
+                    default: 200,
+                    inputFault: 200,
                     inputChange: ['style', 'height'],
                     change: ['style', 'height'],
                     dividerID: "divider_1",
@@ -1475,16 +2643,76 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Inline Padding 10px - 300px",
+                    name: "Inline Padding 20px - 300px",
                     for: ".text_block_height",
                     field: "input_range",
                     min: 10,
                     max: 300,
                     replace: "10px $px",
-                    default: 32,
-                    inputFault: 32,
+                    default: 20,
+                    inputFault: 20,
                     inputChange: ['style', 'padding'],
                     change: ['style', 'padding'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
                     dividerID: "divider_1",
                 },
                 {
@@ -1502,148 +2730,8 @@ export const blocks = {
                     field: "input",
                     default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
                     inputFault: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
-                    dividerID: "divider_2",
-                },
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Para FontSize 12px - 50px",
-                    for: ".text_para",
-                    field: "input_range",
-                    min: 12,
-                    max: 50,
-                    replace: "$px",
-                    default: 16,
-                    inputFault: 16,
-                    inputChange: ['style', 'fontSize'],
-                    change: ['style', 'fontSize'],
-                    dividerID: "divider_2",
-                },
-                {
-                    gridColumn: "span 1",
-                    gridRow: "span 1",
-                    name: "Text Alignment",
-                    for: ".text_para",
-                    field: "input_select",
-                    options: ["left", "center", "right",],
-                    default: "left",
-                    inputFault: "left",
-                    inputChange: ['style', 'textAlign'],
-                    change: ['style', 'textAlign'],
-                    dividerID: "divider_2",
-                },
-                {
-                    gridColumn: "span 1",
-                    gridRow: "span 1",
-                    name: "Font Weight",
-                    for: ".text_para",
-                    field: "input_select",
-                    options: [400, 500, 600, 700, 800, 900],
-                    default: 400,
-                    inputFault: 400,
-                    inputChange: ['style', 'fontWeight'],
-                    change: ['style', 'fontWeight'],
-                    dividerID: "divider_2",
-                },
-                {
-                    gridColumn: "span 1",
-                    gridRow: "span 1",
-                    name: "Color",
-                    for: ".text_para",
-                    field: "input_color",
-                    default: "#777777",
-                    inputFault: "#777777",
-                    colorPath: ["style", "background"],
-                    inputChange: ["style", "color"],
-                    change: ["style", "color"],
-                    dividerID: "divider_2",
-                },
-            ]
-        },
-        double_para: {
-            html: '/blocks/text/double-para.html',
-            options: [
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Background Settings",
-                    field: "divider",
-                    id: "divider_1"
-                },
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Background",
-                    for: ".text_block_height",
-                    field: "input_color",
-                    default: "#FFFFFF",
-                    inputFault: "#FFFFFF",
-                    colorPath: ["style", "background"],
-                    inputChange: ["style", "background"],
-                    change: ["style", "background"],
-                    dividerID: "divider_1",
-                },
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Height 100px - 700px",
-                    for: ".text_block_height",
-                    field: "input_range",
-                    min: 100,
-                    max: 700,
-                    replace: "$px",
-                    default: 140,
-                    inputFault: 140,
-                    inputChange: ['style', 'height'],
-                    change: ['style', 'height'],
-                    dividerID: "divider_1",
-                },
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Inline Padding 10px - 300px",
-                    for: ".text_block_height",
-                    field: "input_range",
-                    min: 10,
-                    max: 300,
-                    replace: "10px $px",
-                    default: 32,
-                    inputFault: 32,
-                    inputChange: ['style', 'padding'],
-                    change: ['style', 'padding'],
-                    dividerID: "divider_1",
-                },
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Paragraph Settings",
-                    field: "divider",
-                    id: "divider_2"
-                },
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Paragraph Text 1",
-                    for: ".text_para_1",
-                    field: "input",
-                    default: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, eligendi aspernatur repellat suscipit nobis qui voluptatum. Earum velit maxime, quaerat consectetur, error culpa corporis eos voluptatum aliquid illum ducimus numquam.",
-                    inputFault: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, eligendi aspernatur repellat suscipit nobis qui voluptatum. Earum velit maxime, quaerat consectetur, error culpa corporis eos voluptatum aliquid illum ducimus numquam.",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
-                    dividerID: "divider_2",
-                },
-                {
-                    gridColumn: "span 3",
-                    gridRow: "span 1",
-                    name: "Paragraph Text 2",
-                    for: ".text_para_2",
-                    field: "input",
-                    default: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, eligendi aspernatur repellat suscipit nobis qui voluptatum. Earum velit maxime, quaerat consectetur, error culpa corporis eos voluptatum aliquid illum ducimus numquam.",
-                    inputFault: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, eligendi aspernatur repellat suscipit nobis qui voluptatum. Earum velit maxime, quaerat consectetur, error culpa corporis eos voluptatum aliquid illum ducimus numquam.",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_2",
                 },
                 {
@@ -1708,7 +2796,42 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Background Settings",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_block_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
                     field: "divider",
                     id: "divider_1"
                 },
@@ -1728,10 +2851,10 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Height 100px - 700px",
+                    name: "Height 0px - 700px",
                     for: ".text_block_height",
                     field: "input_range",
-                    min: 100,
+                    min: 0,
                     max: 700,
                     replace: "$px",
                     default: 200,
@@ -1755,6 +2878,66 @@ export const blocks = {
                     change: ['style', 'padding'],
                     dividerID: "divider_1",
                 },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_1",
+                },
 
                 {
                     gridColumn: "span 3",
@@ -1771,8 +2954,8 @@ export const blocks = {
                     field: "input",
                     default: "Email Text Title",
                     inputFault: "Email Text Title",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_2",
                 },
                 {
@@ -1797,8 +2980,8 @@ export const blocks = {
                     for: ".text_title",
                     field: "input_select",
                     options: ["left", "center", "right",],
-                    default: "center",
-                    inputFault: "center",
+                    default: "left",
+                    inputFault: "left",
                     inputChange: ['style', 'textAlign'],
                     change: ['style', 'textAlign'],
                     dividerID: "divider_2",
@@ -1844,8 +3027,8 @@ export const blocks = {
                     field: "input",
                     default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
                     inputFault: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_3",
                 },
                 {
@@ -1870,8 +3053,8 @@ export const blocks = {
                     for: ".text_para",
                     field: "input_select",
                     options: ["left", "center", "right",],
-                    default: "center",
-                    inputFault: "center",
+                    default: "left",
+                    inputFault: "left",
                     inputChange: ['style', 'textAlign'],
                     change: ['style', 'textAlign'],
                     dividerID: "divider_3",
@@ -1904,13 +3087,48 @@ export const blocks = {
                 },
             ]
         },
-        title_para_button: {
-            html: '/blocks/text/title-para-button.html',
+        double_para: {
+            html: '/blocks/text/double-para.html',
             options: [
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Background Settings",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_block_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
                     field: "divider",
                     id: "divider_1"
                 },
@@ -1930,10 +3148,10 @@ export const blocks = {
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
-                    name: "Height 100px - 700px",
+                    name: "Height 0px - 700px",
                     for: ".text_block_height",
                     field: "input_range",
-                    min: 100,
+                    min: 0,
                     max: 700,
                     replace: "$px",
                     default: 200,
@@ -1957,7 +3175,603 @@ export const blocks = {
                     change: ['style', 'padding'],
                     dividerID: "divider_1",
                 },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Paragraph Settings",
+                    field: "divider",
+                    id: "divider_2"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Paragraph Text 1",
+                    for: ".text_para_1",
+                    field: "input",
+                    default: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, eligendi aspernatur repellat suscipit nobis qui voluptatum. Earum velit maxime, quaerat consectetur, error culpa corporis eos voluptatum aliquid illum ducimus numquam.",
+                    inputFault: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, eligendi aspernatur repellat suscipit nobis qui voluptatum. Earum velit maxime, quaerat consectetur, error culpa corporis eos voluptatum aliquid illum ducimus numquam.",
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Paragraph Text 2",
+                    for: ".text_para_2",
+                    field: "input",
+                    default: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, eligendi aspernatur repellat suscipit nobis qui voluptatum. Earum velit maxime, quaerat consectetur, error culpa corporis eos voluptatum aliquid illum ducimus numquam.",
+                    inputFault: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, eligendi aspernatur repellat suscipit nobis qui voluptatum. Earum velit maxime, quaerat consectetur, error culpa corporis eos voluptatum aliquid illum ducimus numquam.",
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Para FontSize 12px - 50px",
+                    for: ".text_para",
+                    field: "input_range",
+                    min: 12,
+                    max: 50,
+                    replace: "$px",
+                    default: 16,
+                    inputFault: 16,
+                    inputChange: ['style', 'fontSize'],
+                    change: ['style', 'fontSize'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Text Alignment",
+                    for: ".text_para",
+                    field: "input_select",
+                    options: ["left", "center", "right",],
+                    default: "left",
+                    inputFault: "left",
+                    inputChange: ['style', 'textAlign'],
+                    change: ['style', 'textAlign'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".text_para",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 400,
+                    inputFault: 400,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Color",
+                    for: ".text_para",
+                    field: "input_color",
+                    default: "#777777",
+                    inputFault: "#777777",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "color"],
+                    change: ["style", "color"],
+                    dividerID: "divider_2",
+                },
+            ]
+        },
+        title_icon: {
+            html: '/blocks/text/title-icon.html',
+            options: [
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_block_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
+                    field: "divider",
+                    id: "divider_01"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_height",
+                    field: "input_color",
+                    default: "#FFFFFF",
+                    inputFault: "#FFFFFF",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Height 0px - 700px",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 700,
+                    replace: "$px",
+                    default: 50,
+                    inputFault: 50,
+                    inputChange: ['style', 'height'],
+                    change: ['style', 'height'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Inline Padding 20px - 300px",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 10,
+                    max: 300,
+                    replace: "10px $px",
+                    default: 20,
+                    inputFault: 20,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Icon Settings",
+                    field: "divider",
+                    id: "divider_1"
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Icon Image Url",
+                    for: ".text-img img",
+                    field: "input",
+                    default: "https://placehold.co/80x50/slateblue/FFF?text=LOGO",
+                    inputFault: "https://placehold.co/80x50/slateblue/FFF?text=LOGO",
+                    inputChange: ["src"],
+                    change: ["src"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Icon Upload",
+                    for: ".text-img img",
+                    field: "input_file",
+                    sizeLimit: 50,
+                    inputChange: ["src"],
+                    change: ["src"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Img Width",
+                    for: ".text-img-width",
+                    field: "input",
+                    default: "32px",
+                    inputFault: "32px",
+                    inputChange: ['style', 'width'],
+                    change: ['style', 'width'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Icon Color",
+                    for: ".text-img img",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Icon Style",
+                    for: ".text-img img",
+                    field: "input_select",
+                    options: [
+                        '/icon.png',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck.png?alt=media&token=d8617fc3-2321-4765-b801-8bef2fd998d2',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck-rounded.png?alt=media&token=a97492b4-85d0-47f3-8068-a3400f3c3caa',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked.png?alt=media&token=43927438-5dd9-42a4-a324-76de21583b9f',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked-outline.png?alt=media&token=6871d912-32fb-4c64-88bd-4955a9ef87b6',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-unchecked.png?alt=media&token=04e0d76b-7710-4d14-b1df-4d8a3ce8bc12',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked.png?alt=media&token=43927438-5dd9-42a4-a324-76de21583b9f',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheckbox-checked.png?alt=media&token=24d7aa67-7793-4625-b46e-ab32d81b79d3',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fheckbox-checked-filled.png?alt=media&token=a64d3ca0-da39-478d-9402-88136c8b36ac',
+                    ],
+                    htmlOptions: [
+                        `Defailt`,
+                        `check`,
+                        `check-rounded`,
+                        `radio-button-checked`,
+                        `radio-button-checked-outline`,
+                        `radio-button-unchecked`,
+                        `button-unchecked`,
+                        `heckbox-checked`,
+                        `heckbox-checked-filled`,
+                    ],
+                    default: '/icon.png',
+                    info: "These icons are PNG images with transparent backgrounds, so they blend seamlessly when you choose a background color for the block. However, this effect works best with a white background. If you'd like to change the block's background color, please upload your own custom icons to ensure they look correct.",
+                    inputFault: '/icon.png',
+                    inputChange: ["src"],
+                    change: ["src"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Title Settings",
+                    field: "divider",
+                    id: "divider_2"
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Title Text",
+                    for: ".text_title",
+                    field: "input",
+                    default: "Email Text Title",
+                    inputFault: "Email Text Title",
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Color",
+                    for: ".text_title",
+                    field: "input_color",
+                    default: "#000000",
+                    inputFault: "#000000",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "color"],
+                    change: ["style", "color"],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".text_title",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 600,
+                    inputFault: 600,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Title FontSize 30px - 70px",
+                    for: ".text_title",
+                    field: "input_range",
+                    min: 22,
+                    max: 70,
+                    replace: "$px",
+                    default: 28,
+                    inputFault: 28,
+                    inputChange: ['style', 'fontSize'],
+                    change: ['style', 'fontSize'],
+                    dividerID: "divider_2",
+                },
 
+
+            ]
+        },
+        title_para_button: {
+            html: '/blocks/text/title-para-button.html',
+            options: [
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_block_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
+                    field: "divider",
+                    id: "divider_1"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_height",
+                    field: "input_color",
+                    default: "#FFFFFF",
+                    inputFault: "#FFFFFF",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Height 0px - 700px",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 700,
+                    replace: "$px",
+                    default: 200,
+                    inputFault: 200,
+                    inputChange: ['style', 'height'],
+                    change: ['style', 'height'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Inline Padding 20px - 300px",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 10,
+                    max: 300,
+                    replace: "10px $px",
+                    default: 20,
+                    inputFault: 20,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_1",
+                },
                 {
                     gridColumn: "span 3",
                     gridRow: "span 1",
@@ -1973,8 +3787,8 @@ export const blocks = {
                     field: "input",
                     default: "Email Text Title",
                     inputFault: "Email Text Title",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_2",
                 },
                 {
@@ -1999,8 +3813,8 @@ export const blocks = {
                     for: ".text_title",
                     field: "input_select",
                     options: ["left", "center", "right",],
-                    default: "center",
-                    inputFault: "center",
+                    default: "left",
+                    inputFault: "left",
                     inputChange: ['style', 'textAlign'],
                     change: ['style', 'textAlign'],
                     dividerID: "divider_2",
@@ -2046,8 +3860,8 @@ export const blocks = {
                     field: "input",
                     default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
                     inputFault: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_3",
                 },
                 {
@@ -2072,8 +3886,8 @@ export const blocks = {
                     for: ".text_para",
                     field: "input_select",
                     options: ["left", "center", "right",],
-                    default: "center",
-                    inputFault: "center",
+                    default: "left",
+                    inputFault: "left",
                     inputChange: ['style', 'textAlign'],
                     change: ['style', 'textAlign'],
                     dividerID: "divider_3",
@@ -2119,8 +3933,8 @@ export const blocks = {
                     field: "input",
                     default: "Click Here",
                     inputFault: "Click Here",
-                    inputChange: ['textContent'],
-                    change: ['textContent'],
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
                     dividerID: "divider_4",
                 },
                 {
@@ -2129,8 +3943,8 @@ export const blocks = {
                     name: "Background",
                     for: ".text_button a",
                     field: "input_color",
-                    default: "#FFFFFF",
-                    inputFault: "#FFFFFF",
+                    default: "#6a5acd",
+                    inputFault: "#6a5acd",
                     colorPath: ["style", "background"],
                     inputChange: ["style", "background"],
                     change: ["style", "background"],
@@ -2142,11 +3956,23 @@ export const blocks = {
                     name: "Color",
                     for: ".text_button a",
                     field: "input_color",
-                    default: "#000000",
-                    inputFault: "#000000",
+                    default: "#FFFFFF",
+                    inputFault: "#FFFFFF",
                     colorPath: ["style", "background"],
                     inputChange: ["style", "color"],
                     change: ["style", "color"],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Button Link",
+                    for: ".text_button a",
+                    field: "input",
+                    default: "#insertUrlLink",
+                    inputFault: "#insertUrlLink",
+                    inputChange: ['href'],
+                    change: ['href'],
                     dividerID: "divider_4",
                 },
                 {
@@ -2156,8 +3982,8 @@ export const blocks = {
                     for: ".text_button",
                     field: "input_select",
                     options: ["left", "center", "right"],
-                    default: "center",
-                    inputFault: "center",
+                    default: "left",
+                    inputFault: "left",
                     inputChange: ['style', 'textAlign'],
                     change: ['style', 'textAlign'],
                     dividerID: "divider_4",
@@ -2204,6 +4030,1205 @@ export const blocks = {
                     inputChange: ['style', 'fontSize'],
                     change: ['style', 'fontSize'],
                     dividerID: "divider_4",
+                },
+            ]
+        },
+        para_button: {
+            html: '/blocks/text/para-button.html',
+            options: [
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".text_block_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
+                    field: "divider",
+                    id: "divider_1"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_block_height",
+                    field: "input_color",
+                    default: "#FFFFFF",
+                    inputFault: "#FFFFFF",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Height 0px - 700px",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 700,
+                    replace: "$px",
+                    default: 200,
+                    inputFault: 200,
+                    inputChange: ['style', 'height'],
+                    change: ['style', 'height'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Inline Padding 20px - 300px",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 10,
+                    max: 300,
+                    replace: "10px $px",
+                    default: 20,
+                    inputFault: 20,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".text_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Paragraph Settings",
+                    field: "divider",
+                    id: "divider_3"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Para Text",
+                    for: ".text_para",
+                    field: "input",
+                    default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
+                    inputFault: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum possimus omnis dicta, maiores sapiente temporibus, asperiores consequatur nihil facere sit laboriosam rerum error animi cum provident laborum id corporis exercitationem.",
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    dividerID: "divider_3",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Para FontSize 12px - 50px",
+                    for: ".text_para",
+                    field: "input_range",
+                    min: 12,
+                    max: 50,
+                    replace: "$px",
+                    default: 16,
+                    inputFault: 16,
+                    inputChange: ['style', 'fontSize'],
+                    change: ['style', 'fontSize'],
+                    dividerID: "divider_3",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Text Alignment",
+                    for: ".text_para",
+                    field: "input_select",
+                    options: ["left", "center", "right",],
+                    default: "left",
+                    inputFault: "left",
+                    inputChange: ['style', 'textAlign'],
+                    change: ['style', 'textAlign'],
+                    dividerID: "divider_3",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".text_para",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 400,
+                    inputFault: 400,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_3",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Color",
+                    for: ".text_para",
+                    field: "input_color",
+                    default: "#777777",
+                    inputFault: "#777777",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "color"],
+                    change: ["style", "color"],
+                    dividerID: "divider_3",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Button Settings",
+                    field: "divider",
+                    id: "divider_4"
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Button Text",
+                    for: ".text_button a",
+                    field: "input",
+                    default: "Click Here",
+                    inputFault: "Click Here",
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".text_button a",
+                    field: "input_color",
+                    default: "#6a5acd",
+                    inputFault: "#6a5acd",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Color",
+                    for: ".text_button a",
+                    field: "input_color",
+                    default: "#FFFFFF",
+                    inputFault: "#FFFFFF",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "color"],
+                    change: ["style", "color"],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Button Link",
+                    for: ".text_button a",
+                    field: "input",
+                    default: "#insertUrlLink",
+                    inputFault: "#insertUrlLink",
+                    inputChange: ['href'],
+                    change: ['href'],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Button Alignment",
+                    for: ".text_button",
+                    field: "input_select",
+                    options: ["left", "center", "right"],
+                    default: "left",
+                    inputFault: "left",
+                    inputChange: ['style', 'textAlign'],
+                    change: ['style', 'textAlign'],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".text_button a",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 700,
+                    inputFault: 700,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Radius",
+                    for: ".text_button a",
+                    field: "input_range",
+                    min: 0,
+                    max: 50,
+                    replace: "$px",
+                    default: 30,
+                    inputFault: 30,
+                    inputChange: ['style', 'borderRadius'],
+                    change: ['style', 'borderRadius'],
+                    dividerID: "divider_4",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Button FontSize 12px - 30px",
+                    for: ".text_button a",
+                    field: "input_range",
+                    min: 12,
+                    max: 30,
+                    replace: "$px",
+                    default: 14,
+                    inputFault: 14,
+                    inputChange: ['style', 'fontSize'],
+                    change: ['style', 'fontSize'],
+                    dividerID: "divider_4",
+                },
+            ]
+        },
+    },
+    list: {
+        list_icon: {
+            html: '/blocks/list/list-icon.html',
+            options: [
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".list_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".list_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
+                    field: "divider",
+                    id: "divider_01"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".list_block_height",
+                    field: "input_color",
+                    default: "#FFFFFF",
+                    inputFault: "#FFFFFF",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Height 0px - 700px",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 700,
+                    replace: "$px",
+                    default: 200,
+                    inputFault: 200,
+                    inputChange: ['style', 'height'],
+                    change: ['style', 'height'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Inline Padding 20px - 300px",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 10,
+                    max: 300,
+                    replace: "10px $px",
+                    default: 20,
+                    inputFault: 20,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Link Text Settings",
+                    field: "divider",
+                    id: "divider_1"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Link Text",
+                    info: "Please enter the text that will be displayed as the list, one line per list.",
+                    for: ".listing",
+                    changeOnly: "p span",
+                    field: "textarea",
+                    emptyText: "Blank List Text",
+                    inputFault: "Email List Text\nEmail List Text\nEmail List Text",
+                    default: ` <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>`,
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    keepValues: [["style"]],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Color",
+                    for: ".listing p span",
+                    field: "input_color",
+                    default: "#777777",
+                    inputFault: "#777777",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "color"],
+                    change: ["style", "color"],
+                    dividerID: "divider_1",
+                },
+
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "List Gap",
+                    for: ".listing tr td",
+                    field: "input_range",
+                    min: 0,
+                    max: 50,
+                    replace: "$px 0px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".listing p span",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 600,
+                    inputFault: 600,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Title FontSize 30px - 70px",
+                    for: ".listing p span",
+                    field: "input_range",
+                    min: 10,
+                    max: 70,
+                    replace: "$px",
+                    default: 16,
+                    inputFault: 16,
+                    inputChange: ['style', 'fontSize'],
+                    change: ['style', 'fontSize'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Link Icon Settings",
+                    field: "divider",
+                    id: "divider_2"
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Icon Color",
+                    for: ".list_icon_img",
+                    field: "input_color",
+                    default: "#6a5acd",
+                    inputFault: "#6a5acd",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_2",
+                },
+
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Icon Gap",
+                    for: ".icon_gap",
+                    field: "input_range",
+                    min: 0,
+                    max: 50,
+                    replace: "$px",
+                    default: 8,
+                    inputFault: 8,
+                    inputChange: ['style', 'width'],
+                    change: ['style', 'width'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Icon Style",
+                    for: ".list_icon_img",
+                    field: "input_select",
+                    options: [
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck.png?alt=media&token=d8617fc3-2321-4765-b801-8bef2fd998d2',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck-rounded.png?alt=media&token=a97492b4-85d0-47f3-8068-a3400f3c3caa',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked.png?alt=media&token=43927438-5dd9-42a4-a324-76de21583b9f',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked-outline.png?alt=media&token=6871d912-32fb-4c64-88bd-4955a9ef87b6',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-unchecked.png?alt=media&token=04e0d76b-7710-4d14-b1df-4d8a3ce8bc12',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked.png?alt=media&token=43927438-5dd9-42a4-a324-76de21583b9f',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheckbox-checked.png?alt=media&token=24d7aa67-7793-4625-b46e-ab32d81b79d3',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fheckbox-checked-filled.png?alt=media&token=a64d3ca0-da39-478d-9402-88136c8b36ac',
+                    ],
+                    htmlOptions: [
+                        `check`,
+                        `check-rounded`,
+                        `radio-button-checked`,
+                        `radio-button-checked-outline`,
+                        `radio-button-unchecked`,
+                        `button-unchecked`,
+                        `heckbox-checked`,
+                        `heckbox-checked-filled`,
+                    ],
+                    info: "These icons are PNG images with transparent backgrounds, so they blend seamlessly when you choose a background color for the block. However, this effect works best with a white background. If you'd like to change the block's background color, please upload your own custom icons to ensure they look correct.",
+                    default: 'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck.png?alt=media&token=d8617fc3-2321-4765-b801-8bef2fd998d2',
+                    inputFault: 'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck.png?alt=media&token=d8617fc3-2321-4765-b801-8bef2fd998d2',
+                    inputChange: ["src"],
+                    change: ["src"],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Icon Upload",
+                    for: ".list_icon_img",
+                    field: "input_file",
+                    sizeLimit: 50,
+                    inputChange: ["src"],
+                    change: ["src"],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Icon Size 20px - 100px",
+                    for: ".list_icon_img_width",
+                    field: "input_range",
+                    min: 20,
+                    max: 100,
+                    replace: "$px",
+                    default: 24,
+                    inputFault: 24,
+                    inputChange: ['style', 'width'],
+                    change: ['style', 'width'],
+                    dividerID: "divider_2",
+                },
+            ]
+        },
+        double_list_icon: {
+            html: '/blocks/list/double-list-icon.html',
+            options: [
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Block Settings",
+                    field: "divider",
+                    id: "divider_0"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".list_block",
+                    field: "input_color",
+                    default: "#ffffff",
+                    inputFault: "#ffffff",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Padding",
+                    for: ".list_block",
+                    field: "input_range",
+                    min: 0,
+                    max: 100,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_0",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Content Block Settings",
+                    field: "divider",
+                    id: "divider_01"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Background",
+                    for: ".list_block_height",
+                    field: "input_color",
+                    default: "#FFFFFF",
+                    inputFault: "#FFFFFF",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Height 0px - 700px",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 700,
+                    replace: "$px",
+                    default: 200,
+                    inputFault: 200,
+                    inputChange: ['style', 'height'],
+                    change: ['style', 'height'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Inline Padding 20px - 300px",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 10,
+                    max: 300,
+                    replace: "10px $px",
+                    default: 20,
+                    inputFault: 20,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Left",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopLeftRadius'],
+                    change: ['style', 'borderTopLeftRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Top Right",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderTopRightRadius'],
+                    change: ['style', 'borderTopRightRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Left",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomLeftRadius'],
+                    change: ['style', 'borderBottomLeftRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Radius Bottom Right",
+                    for: ".list_block_height",
+                    field: "input_range",
+                    min: 0,
+                    max: 300,
+                    replace: "$px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'borderBottomRightRadius'],
+                    change: ['style', 'borderBottomRightRadius'],
+                    dividerID: "divider_01",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Link Text Settings",
+                    field: "divider",
+                    id: "divider_1"
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Link Text",
+                    info: "Please enter the text that will be displayed as the list, one line per list.",
+                    for: ".listing-left",
+                    changeOnly: "p span",
+                    field: "textarea",
+                    emptyText: "Blank List Text",
+                    inputFault: "Email List Text\nEmail List Text\nEmail List Text",
+                    default: ` <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>`,
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    keepValues: [["style"]],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Link Text",
+                    info: "Please enter the text that will be displayed as the list, one line per list.",
+                    for: ".listing-right",
+                    changeOnly: "p span",
+                    field: "textarea",
+                    emptyText: "Blank List Text",
+                    inputFault: "Email List Text\nEmail List Text\nEmail List Text",
+                    default: ` <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="list_icon_img_width" valign="middle"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="24">
+                                    <svg class="list_icon_img list_icon_img_width" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="auto" viewBox="0 0 24 24">
+                                        <path fill="#6a5acd"
+                                            d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+                                    </svg>
+                                </td>
+                                <td class="icon_gap" style="vertical-align:middle;color:transparent;font-size:0;"
+                                    width="8">
+                                    &ZeroWidthSpace;
+                                </td>
+                                <td align="left"
+                                    style="padding:0;height:auto;word-wrap:break-word;vertical-align:middle;"
+                                    width="auto">
+                                    <p style="margin:0 0 5px 0;"><span
+                                            style="font-size:16px;font-weight:400;color:#777777;line-height:150%;mso-line-height-alt:24px;mso-ansi-font-size:16px;">Email
+                                            List Text</span></p>
+                                </td>
+                            </tr>`,
+                    inputChange: ['innerHTML'],
+                    change: ['innerHTML'],
+                    keepValues: [["style"]],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Color",
+                    for: ".listing p span",
+                    field: "input_color",
+                    default: "#777777",
+                    inputFault: "#777777",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "color"],
+                    change: ["style", "color"],
+                    dividerID: "divider_1",
+                },
+
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "List Gap",
+                    for: ".listing tr td",
+                    field: "input_range",
+                    min: 0,
+                    max: 50,
+                    replace: "$px 0px",
+                    default: 0,
+                    inputFault: 0,
+                    inputChange: ['style', 'padding'],
+                    change: ['style', 'padding'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Font Weight",
+                    for: ".listing p span",
+                    field: "input_select",
+                    options: [400, 500, 600, 700, 800, 900],
+                    default: 600,
+                    inputFault: 600,
+                    inputChange: ['style', 'fontWeight'],
+                    change: ['style', 'fontWeight'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Title FontSize 30px - 70px",
+                    for: ".listing p span",
+                    field: "input_range",
+                    min: 10,
+                    max: 70,
+                    replace: "$px",
+                    default: 16,
+                    inputFault: 16,
+                    inputChange: ['style', 'fontSize'],
+                    change: ['style', 'fontSize'],
+                    dividerID: "divider_1",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Link Icon Settings",
+                    field: "divider",
+                    id: "divider_2"
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Icon Color",
+                    for: ".list_icon_img",
+                    field: "input_color",
+                    default: "#6a5acd",
+                    inputFault: "#6a5acd",
+                    colorPath: ["style", "background"],
+                    inputChange: ["style", "background"],
+                    change: ["style", "background"],
+                    dividerID: "divider_2",
+                },
+
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Icon Gap",
+                    for: ".icon_gap",
+                    field: "input_range",
+                    min: 0,
+                    max: 50,
+                    replace: "$px",
+                    default: 8,
+                    inputFault: 8,
+                    inputChange: ['style', 'width'],
+                    change: ['style', 'width'],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 2",
+                    gridRow: "span 1",
+                    name: "Icon Style",
+                    for: ".list_icon_img",
+                    field: "input_select",
+                    options: [
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck.png?alt=media&token=d8617fc3-2321-4765-b801-8bef2fd998d2',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck-rounded.png?alt=media&token=a97492b4-85d0-47f3-8068-a3400f3c3caa',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked.png?alt=media&token=43927438-5dd9-42a4-a324-76de21583b9f',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked-outline.png?alt=media&token=6871d912-32fb-4c64-88bd-4955a9ef87b6',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-unchecked.png?alt=media&token=04e0d76b-7710-4d14-b1df-4d8a3ce8bc12',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fradio-button-checked.png?alt=media&token=43927438-5dd9-42a4-a324-76de21583b9f',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheckbox-checked.png?alt=media&token=24d7aa67-7793-4625-b46e-ab32d81b79d3',
+                        'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fheckbox-checked-filled.png?alt=media&token=a64d3ca0-da39-478d-9402-88136c8b36ac',
+                    ],
+                    htmlOptions: [
+                        `check`,
+                        `check-rounded`,
+                        `radio-button-checked`,
+                        `radio-button-checked-outline`,
+                        `radio-button-unchecked`,
+                        `button-unchecked`,
+                        `heckbox-checked`,
+                        `heckbox-checked-filled`,
+                    ],
+                    info: "These icons are PNG images with transparent backgrounds, so they blend seamlessly when you choose a background color for the block. However, this effect works best with a white background. If you'd like to change the block's background color, please upload your own custom icons to ensure they look correct.",
+                    default: 'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck.png?alt=media&token=d8617fc3-2321-4765-b801-8bef2fd998d2',
+                    inputFault: 'https://firebasestorage.googleapis.com/v0/b/email-builder-cb0e2.appspot.com/o/list-icons%2Fcheck.png?alt=media&token=d8617fc3-2321-4765-b801-8bef2fd998d2',
+                    inputChange: ["src"],
+                    change: ["src"],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 1",
+                    gridRow: "span 1",
+                    name: "Icon Upload",
+                    for: ".list_icon_img",
+                    field: "input_file",
+                    sizeLimit: 50,
+                    inputChange: ["src"],
+                    change: ["src"],
+                    dividerID: "divider_2",
+                },
+                {
+                    gridColumn: "span 3",
+                    gridRow: "span 1",
+                    name: "Icon Size 20px - 100px",
+                    for: ".list_icon_img_width",
+                    field: "input_range",
+                    min: 20,
+                    max: 100,
+                    replace: "$px",
+                    default: 24,
+                    inputFault: 24,
+                    inputChange: ['style', 'width'],
+                    change: ['style', 'width'],
+                    dividerID: "divider_2",
                 },
             ]
         },

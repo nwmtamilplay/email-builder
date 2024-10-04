@@ -1,13 +1,20 @@
 // Directly import Sortable from the CDN using an ES module URL
 import { blocks } from '/htmlblocks.js'
-import { isProgrammaticClick, setIsProgrammaticClick, saveAsHtml, calculateHtmlSizeInKB, fetchHtml, createBlock, currentBlockName, setCurrentBlockName, checkBlockExits, changeBlocksSettings, history, setHistoryPos, historyControls, historyUndo, historyRedo } from '/functions.js'
+import { uploadImgToForeStorage, isProgrammaticClick, setIsProgrammaticClick, saveAsHtml, calculateHtmlSizeInKB, fetchHtml, createBlock, currentBlockName, setCurrentBlockName, checkBlockExits, changeBlocksSettings, history, setHistoryPos, historyControls, historyUndo, historyRedo } from '/functions.js'
 
 const blockList = async () => {
     await fetch('/block-list.json')
         .then(res => res.json())
         .then(data => {
             createBlockList(data)
-            startEmailBuilding()
+            startEmailBuilding();
+            // Instantiate PreLoader with custom range values
+            const myPreLoader = new PreLoader({
+                rangeTop: 150,// set Top Viewport for Pre Loader
+                rangeBottom: 50, // set Bottom Viewport for Pre Loader
+                setImgLoaderBottomRange: 0,// set Bottom Viewport for Img Loader
+            });
+            myPreLoader.initImgLoader();
         })
 }
 blockList();
@@ -30,7 +37,7 @@ function createBlockList(data) {
             blockDiv.dataset.blockAction = block.action;
 
             let img = document.createElement("img");
-            img.src = block.img;
+            img.setAttribute('img-loader', block.img)
 
             blockDiv.append(img)
             blockOptions.append(blockDiv);
@@ -58,9 +65,9 @@ function startEmailBuilding() {
             const field = document.createElement('div');
             field.className = `blockOptions block_${uniqueId}`;
             if (option.dividerID) field.classList.add(option.dividerID, 'divider_controls');
-            if (option.dividerID) field.classList.add(`input_field_${optionIndex}`);
+            field.classList.add(`input_field_${optionIndex}`);
             field.style.gridColumn = option.gridColumn
-            field.style.gridRow = option.gridRow
+            field.style.gridRow = option.gridRow;
             field.innerHTML = (option.info) ? `<h5>${option.name}<div data-info="${option.info}"></div></h5>` : `<h5>${option.name}</h5>`;
 
             const finalValue = (str, value) => {
@@ -113,30 +120,55 @@ function startEmailBuilding() {
                                 isCloneClick = true;
                             }
                         });
-
                         let uniqueFor;
                         if (option.for == 'parentBlock') {
                             uniqueFor = `.block_${uniqueId}`;
                         } else {
                             uniqueFor = `${option.for}`;
                         }
+                        function hexToRgba(hex, alpha = 1) {
+                            // Remove the hash symbol if present
+                            hex = hex.replace('#', '');
+
+                            // Expand shorthand hex (e.g., #fff to #ffffff)
+                            if (hex.length === 3) {
+                                hex = hex.split('').map(char => char + char).join('');
+                            }
+
+                            // Parse the hex values
+                            const r = parseInt(hex.slice(0, 2), 16);
+                            const g = parseInt(hex.slice(2, 4), 16);
+                            const b = parseInt(hex.slice(4, 6), 16);
+
+                            // Return the RGBA string
+                            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                        }
                         input.addEventListener('change', (e) => {
-                            // console.log(e.target.value)
-                            color.style.background = e.target.value;
+                            let value = hexToRgba(e.target.value, 1);
+                            // console.log(document.querySelector(`.block_${uniqueId} ${option.for}`))
+                            if (option.doThis) value = option.doThis(`.block_${uniqueId} ${option.for}`, value)
+                            console.log(value)
+                            color.style.color = value;
+                            color.style.background = value;
                             // console.log(document.querySelector(`.input_field_${optionIndex} .color`))
-                            changeBlocksSettings(option, e.target.value, e.target.value, `.block_${uniqueId}.input_field_${optionIndex} .color`, option.colorPath, uniqueFor, `.block_${uniqueId}`)
+                            changeBlocksSettings(option, value, value, `.block_${uniqueId}.input_field_${optionIndex} .color`, option.colorPath, uniqueFor, `.block_${uniqueId}`)
                             if (isCloneClick) {
                                 isCloneClick = false;
                             } else {
                                 historyControls(blockName, `.input_field_${optionIndex} .color`, option.colorPath, option, previewVal, inputPreviewVal, option.inputFault, option.default, uniqueFor, `.block_${uniqueId}`);
                             }
-                            previewVal = e.target.value;
-                            inputPreviewVal = e.target.value;
+                            previewVal = value;
+                            inputPreviewVal = value;
                             enter = true;
                         })
                         input.addEventListener('input', (e) => {
-                            color.style.color = e.target.value;
-                            color.style.background = e.target.value;
+                            let value = hexToRgba(e.target.value, 1);
+                            // console.log(document.querySelector(`.block_${uniqueId} ${option.for}`))
+                            if (option.doThis) value = option.doThis(`.block_${uniqueId} ${option.for}`, value)
+                            // console.log(value)
+
+                            color.style.color = value;
+                            color.style.background = value;
                         })
                         // Close the div when clicking outside
                         window.addEventListener('click', function (event) {
@@ -159,10 +191,10 @@ function startEmailBuilding() {
                 case 'input_select':
                     {
                         const input = document.createElement("select");
-                        option.options.forEach(opt => {
+                        option.options.forEach((opt, optIndex) => {
                             const optTag = document.createElement("option");
                             optTag.value = opt;
-                            optTag.textContent = opt;
+                            optTag.innerHTML = option.htmlOptions ? option.htmlOptions[optIndex] : opt;
                             input.append(optTag)
                         })
                         input.value = option.inputFault;
@@ -183,16 +215,20 @@ function startEmailBuilding() {
                         }
 
                         input.addEventListener('change', (e) => {
-                            changeBlocksSettings(option, e.target.value, e.target.value, `.block_${uniqueId}.input_field_${optionIndex} select`, ['value'], uniqueFor, `.block_${uniqueId}`)
+                            let value = e.target.value;
+                            // console.log(document.querySelector(`.block_${uniqueId} ${option.for}`))
+                            if (option.doThis) value = option.doThis(document.querySelectorAll(`.block_${uniqueId} ${option.for}`), e.target.value)
+                            // console.log(value)
+                            changeBlocksSettings(option, value, value, `.block_${uniqueId}.input_field_${optionIndex} select`, ['value'], uniqueFor, `.block_${uniqueId}`)
                             if (isCloneClick) {
                                 isCloneClick = false;
                             } else {
                                 historyControls(blockName, `.input_field_${optionIndex} select`, ["value"], option, previewVal, inputPreviewVal, option.inputFault, option.default, uniqueFor, `.block_${uniqueId}`);
                             }
-                            previewVal = e.target.value;
-                            inputPreviewVal = e.target.value;
+                            previewVal = value;
+                            inputPreviewVal = value;
                         })
-                        input.addEventListener('focusout', (e) => {
+                        input.addEventListener('focusout', () => {
                             historyControls(blockName, `.input_field_${optionIndex} select`, ["value"], option, previewVal, inputPreviewVal, option.inputFault, option.default, uniqueFor, `.block_${uniqueId}`);
                         })
                         field.append(input);
@@ -218,7 +254,7 @@ function startEmailBuilding() {
                         field.addEventListener("click", () => {
                             input.click();
                         })
-                        input.addEventListener('change', (e) => {
+                        input.addEventListener('change', async (e) => {
                             const selectedFile = e.target.files[0];
                             const maxSize = Number(sizeLimit) * 1024; // 300 KB in bytes
                             if (selectedFile && selectedFile.size > maxSize) {
@@ -226,42 +262,11 @@ function startEmailBuilding() {
                                 e.target.value = ''; // Clear the input
                             } else {
                                 if (selectedFile) {
-                                    displayImage(selectedFile, uniqueFor, previewVal, inputPreviewVal); // Call the function to display the image
+                                    const img = document.querySelectorAll(`.block_${uniqueId} ${uniqueFor}`);
+                                    uploadImgToForeStorage(selectedFile, img, input, replace, option);
                                 }
                             }
                         });
-                        // Function to check if the selected file is an image and display it
-                        function displayImage(file, uniqueFor, previewVal, inputPreviewVal) {
-                            const logo = document.querySelector(uniqueFor);
-
-                            // Check if the selected file is an image
-                            if (file && file.type.startsWith('image/')) {
-                                const reader = new FileReader();
-
-                                // When the file is successfully read
-                                reader.onloadend = async function () {
-                                    const base64String = await reader.result; // base64-encoded string
-
-                                    // Set the image source to the base64-encoded string
-                                    if (logo) {
-                                        logo.src = base64String;
-                                    } else {
-                                        console.error('No element found for selector:', uniqueFor);
-                                    }
-                                };
-                                // Read the file as a Data URL (Base64)
-                                reader.readAsDataURL(file);
-
-                            } else {
-                                // If not an image, display a placeholder image
-                                if (logo) {
-                                    logo.src = 'https://placehold.co/80x50/slateblue/FFF?text=NO+LOGO';
-                                } else {
-                                    console.error('No element found for selector:', uniqueFor);
-                                }
-
-                            }
-                        }
                         field.append(input);
                         blockOptions.append(field);
                     }
@@ -294,16 +299,24 @@ function startEmailBuilding() {
                             field.dataset.value = finalValue(replace, e.target.value);
                         })
                         input.addEventListener('change', (e) => {
-                            changeBlocksSettings(option, e.target.value, finalValue(replace, e.target.value), `.block_${uniqueId}.input_field_${optionIndex} input`, ['value'], uniqueFor, `.block_${uniqueId}`)
+                            let value = e.target.value;
+                            // console.log(document.querySelector(`.block_${uniqueId} ${option.for}`))
+                            if (option.doThis) value = option.doThis(`.block_${uniqueId} ${option.for}`, value)
+                            field.dataset.value = finalValue(replace, e.target.value);
+                            changeBlocksSettings(option, value, finalValue(replace, value), `.block_${uniqueId}.input_field_${optionIndex} input`, ['value'], uniqueFor, `.block_${uniqueId}`)
                             if (isCloneClick) {
                                 isCloneClick = false;
                             } else {
                                 historyControls(blockName, `.input_field_${optionIndex} input`, ["value"], option, inputPreviewVal, previewVal, option.inputFault, finalValue(replace, option.default), uniqueFor, `.block_${uniqueId}`);
                             }
-                            previewVal = finalValue(replace, e.target.value);
-                            inputPreviewVal = e.target.value;
+                            previewVal = finalValue(replace, value);
+                            inputPreviewVal = value;
                         })
                         input.addEventListener('focusout', (e) => {
+                            let value = e.target.value;
+                            // console.log(document.querySelector(`.block_${uniqueId} ${option.for}`))
+                            if (option.doThis) value = option.doThis(`.block_${uniqueId} ${option.for}`, value)
+                            field.dataset.value = finalValue(replace, e.target.value);
                             historyControls(blockName, `.input_field_${optionIndex} input`, ["value"], option, inputPreviewVal, previewVal, option.inputFault, finalValue(replace, option.default), uniqueFor, `.block_${uniqueId}`);
                         })
                         field.append(input);
@@ -331,14 +344,17 @@ function startEmailBuilding() {
                             uniqueFor = `${option.for}`;
                         }
                         input.addEventListener('change', (e) => {
-                            changeBlocksSettings(option, e.target.value, finalValue(replace, e.target.value), `.block_${uniqueId}.input_field_${optionIndex} input`, ['value'], uniqueFor, `.block_${uniqueId}`)
+                            let value = e.target.value;
+                            if (option.doThis) value = option.doThis(document.querySelector(`.block_${uniqueId} ${option.for}`), e.target.value)
+                            console.log(value)
+                            changeBlocksSettings(option, value, finalValue(replace, value), `.block_${uniqueId}.input_field_${optionIndex} input`, ['value'], uniqueFor, `.block_${uniqueId}`)
                             if (isCloneClick) {
                                 isCloneClick = false;
                             } else {
                                 historyControls(blockName, `.input_field_${optionIndex} input`, ["value"], option, inputPreviewVal, previewVal, option.inputFault, finalValue(replace, option.default), uniqueFor, `.block_${uniqueId}`);
                             }
-                            previewVal = finalValue(replace, e.target.value);
-                            inputPreviewVal = e.target.value;
+                            previewVal = finalValue(replace, value);
+                            inputPreviewVal = value;
                         })
                         input.addEventListener('focusout', (e) => {
                             historyControls(blockName, `.input_field_${optionIndex} input`, ["value"], option, inputPreviewVal, previewVal, option.inputFault, finalValue(replace, option.default), uniqueFor, `.block_${uniqueId}`);
@@ -366,12 +382,8 @@ function startEmailBuilding() {
                         } else {
                             uniqueFor = `${option.for}`;
                         }
-                        const createElementFn = () => {
-                            let createElement = document.createElement('div');
-                            createElement.innerHTML = option.createElement;
-                            return createElement.children[0]
-                        }
                         input.addEventListener('change', (e) => {
+                            if (option.doThis) option.doThis()
                             let keepValues = [];
                             let listDiv = document.querySelectorAll(`.container .block_${uniqueId} ${option.for} > *`);
                             let outputDiv = document.createElement("div");
@@ -380,11 +392,21 @@ function startEmailBuilding() {
                                 option.keepValues.forEach(paths => {
                                     paths.forEach((path, index) => {
                                         if (paths[0] == "style") {
-                                            eachAttributes.push(list.getAttribute("style"))
+                                            if (option.changeOnly) {
+                                                eachAttributes.push(list.querySelector(option.changeOnly).getAttribute("style"))
+                                            } else {
+                                                eachAttributes.push(list.getAttribute("style"))
+                                            }
                                         } else {
                                             let changeTargetInput = list;
-                                            let value = changeTargetInput[path];
-                                            eachAttributes.push(value)
+                                            if (option.changeOnly) {
+                                                let value = changeTargetInput.querySelector(option.changeOnly)[path];
+                                                eachAttributes.push(value)
+                                            } else {
+                                                let value = changeTargetInput[path];
+                                                eachAttributes.push(value)
+                                            }
+
                                         }
                                     });
                                 });
@@ -392,16 +414,24 @@ function startEmailBuilding() {
                             })
                             outputDiv.innerHTML = "";
                             e.target.value.split("\n").forEach((item, indexDiv) => {
+                                if (item.trim() == '') item = option.emptyText ? option.emptyText : "Blank"
                                 option.inputChange.forEach((path, index) => {
                                     let changeTargetInput
                                     if (listDiv[indexDiv]) {
                                         changeTargetInput = listDiv[indexDiv].cloneNode(true);
                                     } else {
-                                        changeTargetInput = createElementFn();
+                                        changeTargetInput = listDiv[0].cloneNode(true);
+                                        console.log(changeTargetInput)
                                     }
                                     if (changeTargetInput && typeof changeTargetInput === 'object') {
                                         if (index === option.change.length - 1) {
-                                            changeTargetInput[path] = item;
+                                            if (option.changeOnly) {
+                                                changeTargetInput.querySelectorAll(option.changeOnly).forEach(element => {
+                                                    element[path] = item;
+                                                });
+                                            } else {
+                                                changeTargetInput[path] = item;
+                                            }
                                             option.keepValues.forEach((paths, indexKeep) => {
                                                 paths.forEach((path, index) => {
                                                     let keepChangeTargetInput = changeTargetInput;
@@ -515,7 +545,7 @@ function startEmailBuilding() {
             // trigger defaultBlock 
             if (defaultBlock.includes(blockName)) {
                 if (index == 0) {
-                    blockBtn.click();
+                    blockBtn.dispatchEvent(new Event('click'));
                 }
             }
         })
@@ -538,9 +568,8 @@ function startEmailBuilding() {
         // console.log(currentBlockName)
         historyRedo();
     });
-    document.getElementById('saveButton').addEventListener('click', function () {
-        ;
-        saveAsHtml(`${document.querySelector("#emailTitle").value}`)
+    document.querySelector('#saveButton').addEventListener('click', function () {
+        saveAsHtml(`${document.querySelector("#emailTitle").value}`);
     });
 
     // setInterval(() => {
@@ -599,7 +628,6 @@ export function captureDiv(cls, trashBlock) {
     html2canvas(divElement).then((canvas) => {
         // Append the canvas (screenshot) to the body or anywhere you want
         trashBlock.appendChild(canvas);
-
         // // Optionally, you can save it as an image file
         // const image = canvas.toDataURL("image/png");
         // const link = document.createElement("a");
@@ -608,3 +636,11 @@ export function captureDiv(cls, trashBlock) {
         // link.click();
     });
 }
+
+// for Mobile
+document.querySelector("#closeOnMob").addEventListener("click", () => {
+    if (document.querySelector('#builder').classList.contains("mobClose")) document.querySelector('#builder').classList.remove("mobClose");
+    if (document.querySelector('#blockControls').classList.contains("mobClose")) document.querySelector('#blockControls').classList.remove("mobClose");
+})
+
+

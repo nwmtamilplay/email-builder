@@ -1,4 +1,8 @@
-import { captureDiv } from '/script.js'
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+import { captureDiv } from '/script.js';
+
 export let isProgrammaticClick = false;
 export let currentBlockName;
 export const setCurrentBlockName = (name) => {
@@ -39,6 +43,8 @@ export const createBlock = (get) => {
     block.className = `${get.uniqueId} email-blocks selected_block`;
     block.dataset.blockName = get.blockName;
     if (isProgrammaticClick) {
+        document.querySelector(`.email-blocks.block_${currentBlockName.split("_").slice(-1)[0]}`).querySelector('.deleteThis').remove();
+        document.querySelector(`.email-blocks.block_${currentBlockName.split("_").slice(-1)[0]}`).querySelector('.cloneThis').remove();
         // console.log(`.email-blocks.block_${currentBlockName.split("_").slice(-1)[0]}`)
         block.innerHTML = document.querySelector(`.email-blocks.block_${currentBlockName.split("_").slice(-1)[0]}`).innerHTML;
         // isProgrammaticClick = false;
@@ -76,14 +82,10 @@ export const createBlock = (get) => {
     clone.className = "cloneThis";
     clone.title = "Clone This Block";
     clone.addEventListener("click", () => {
-        setTimeout(() => {
-            deleteDiv.remove();
-            clone.remove();
-        }, 0);
         let copyHistory = history[get.blockName];
         let copyHistoryPos = history[`${get.blockName}_historyPos`];
         isProgrammaticClick = true;
-        get.blockBtn.click();
+        get.blockBtn.dispatchEvent(new Event('click'));
         history[currentBlockName] = copyHistory.map(item => {
             return {
                 ...item,
@@ -166,21 +168,19 @@ export const changeBlocksSettings = (option, inputChangeVal, changeVal, input, e
                 console.error(`Invalid path or changeTarget at ${path}`);
             }
         });
+        document.querySelector(input).dispatchEvent(new Event('input'));
+
     }
     // Function to apply changes
     document.querySelectorAll(`${uniqueId} ${uniqueFor}`).forEach(elem => {
         let changeTargetElem = elem;
-        option.change.forEach((path, index) => {
-            if (changeTargetElem && typeof changeTargetElem === 'object') {
-                if (index === option.change.length - 1) {
-                    changeTargetElem[path] = changeVal;
-                } else {
-                    changeTargetElem = changeTargetElem[path];
-                }
-            } else {
-                console.error(`Invalid path or changeTarget at ${path}`);
-            }
-        });
+        if (option.change[0] == 'attr') {
+            changeTargetElem.setAttribute(option.change[1], changeVal)
+        } else if (option.change[0] == 'style') {
+            changeTargetElem.style[option.change[1]] = changeVal;
+        } else {
+            changeTargetElem[option.change[0]] = changeVal;
+        }
     });
     checkUndoRedo(currentBlockName)
 }
@@ -310,3 +310,70 @@ export function calculateHtmlSizeInKB() {
 }
 
 
+
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBjfi1KgMZbRvoBGGF8CJZZyEhJo2pMjXc",
+    authDomain: "email-builder-cb0e2.firebaseapp.com",
+    projectId: "email-builder-cb0e2",
+    storageBucket: "email-builder-cb0e2.appspot.com",
+    messagingSenderId: "1082443562231",
+    appId: "1:1082443562231:web:8457cc9030278998da27f2",
+    measurementId: "G-F5XNN9Y08L"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// Initialize Firebase Storage
+const storage = getStorage(app);
+
+export function uploadImgToForeStorage(file, img, input, replace, option) {
+    // Create a reference to 'images/{fileName}'
+    const storageRef = ref(storage, 'email-builder-images/' + file.name);
+    // Upload the file
+    uploadBytes(storageRef, file).then((snapshot) => {
+        console.log('Uploaded a blob or file!', snapshot);
+        // Get the file's download URL
+        getDownloadURL(snapshot.ref).then((url) => {
+            console.log('File available at', url);
+            let changeVal = finalValue(replace, url);
+            img.forEach(element => {
+                if (option.change[0] == 'attr') {
+                    element.setAttribute(option.change[1], changeVal)
+                } else if (option.change[0] == 'style') {
+                    element.style[option.change[1]] = changeVal;
+                } else {
+                    element[option.change[0]] = changeVal;
+                }
+            });
+            createToast('Your image has been successfully uploaded and will be available for 30 days. After this period, the image will be automatically removed.')
+            input.value = '';
+            return url;
+        }).catch((error) => {
+            console.error('Failed to get download URL', error);
+        });
+    }).catch((error) => {
+        console.error('Upload failed', error);
+    });
+}
+
+function createToast(text) {
+    let div = document.createElement('div');
+    div.className = 'toast active';
+    div.textContent = text;
+    document.querySelector("#toast").prepend(div);
+    setTimeout(() => {
+        div.classList.remove('active');
+        setTimeout(() => {
+            div.remove();
+        }, 1000);
+    }, 2000);
+}
+
+const finalValue = (str, value) => {
+    if (str == null) return value;
+    return str.replaceAll("$", value);
+}

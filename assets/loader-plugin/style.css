@@ -1,0 +1,72 @@
+[pre-loader] {
+    --ani-timing-function: ease-out;
+    --ani-dur: 500ms;
+    --ani-offset: 3rem;
+}
+
+/* Animation one */
+
+[pre-loader].custom-class-hide {
+    --ani-name: fadePopupHide;
+    animation: var(--ani-name) var(--ani-dur, 1000ms) var(--ani-delay, 0s) var(--ani-timing-function, linear) forwards;
+}
+
+[pre-loader].custom-class-show {
+    --ani-name: fadePopupShow;
+    animation: var(--ani-name) var(--ani-dur, 1000ms) var(--ani-delay, 0s) var(--ani-timing-function, linear) forwards;
+    animation-direction: alternate;
+}
+
+@keyframes fadePopupShow {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadePopupHide {
+    to {
+        transform: scale(0);
+    }
+
+    from {
+        transform: scale(1);
+    }
+}
+
+/* Animation Two */
+
+[pre-loader].clipUp-hide {
+    --ani-name: clipUpHide;
+    animation: var(--ani-name) var(--ani-dur, 1000ms) var(--ani-delay, 0s) var(--ani-timing-function, linear) forwards;
+}
+
+[pre-loader].clipUp-show {
+    --ani-name: clipUpShow;
+    animation: var(--ani-name) var(--ani-dur, 1000ms) var(--ani-delay, 0s) var(--ani-timing-function, linear) forwards;
+    animation-direction: alternate;
+}
+
+@keyframes clipUpShow {
+    from {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+    }
+
+    to {
+        clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+    }
+}
+
+
+@keyframes clipUpHide {
+    to {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+    }
+
+    from {
+        clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+    }
+}

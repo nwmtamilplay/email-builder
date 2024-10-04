@@ -178,7 +178,7 @@ section#preview {
 #trashBlocks .closeThis {
     position: absolute;
     right: 100%;
-    bottom: 3rem;
+    bottom: 1rem;
     width: 3rem;
     height: 3rem;
     background-color: var(--color);
@@ -469,6 +469,10 @@ input[type="file"] {
     text-align: center;
 }
 
+#blockControls .blockOptions_section input[type="range"] {
+    padding: 1.4rem;
+}
+
 /* Change track (line) color */
 #blockControls .blockOptions_section input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
@@ -500,6 +504,7 @@ input[type="file"] {
     background-image: url(https://api.iconify.design/material-symbols:info-outline-rounded.svg?color=black);
     background-size: cover;
     cursor: pointer;
+    z-index: 99999999;
 }
 
 #blockControls .blockOptions_section .blockOptions h5:has([data-info]) {
@@ -512,7 +517,7 @@ input[type="file"] {
 #blockControls .blockOptions_section .blockOptions [data-info]::before {
     position: absolute;
     right: 110%;
-    top: 0%;
+    bottom: 0%;
     content: attr(data-info);
     background-color: black;
     color: whitesmoke;
@@ -522,7 +527,8 @@ input[type="file"] {
     text-align: center;
     box-sizing: content-box;
     text-wrap: balance;
-    font-size: 1rem;
+    font-size: 14px;
+    font-weight: 400;
     opacity: 0;
     pointer-events: none;
     transition: .3s;
@@ -539,7 +545,7 @@ input[type="file"] {
 #blockControls .blockOptions_section .blockOptions:has(input[type="range"])::after {
     content: attr(data-value);
     position: absolute;
-    top: 1.5rem;
+    top: 1.6rem;
     right: 1rem;
     color: var(--color);
     font-weight: 600;
@@ -628,6 +634,64 @@ input[type="file"] {
 #undo,
 #redo {
     font-size: 1.5rem;
+}
+
+#toast {
+    width: 100%;
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.toast {
+    width: max-content;
+    max-width: 100%;
+    background-color: whitesmoke;
+    color: var(--color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem;
+    outline: 1px solid var(--color);
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.1);
+}
+
+.toast.active {
+    animation: popToast 0.5s forwards;
+}
+
+.toast {
+    animation: hideToast 0.5s forwards;
+}
+
+@keyframes popToast {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes hideToast {
+    0% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
 }
 
 @media (width >=1800px) {
@@ -780,8 +844,4 @@ input[type="file"] {
     #blockControls.mobClose {
         transform: translateX(0%);
     }
-
-
-
-
 }

@@ -52,16 +52,38 @@
                 "img": "images/typo_para.png"
             },
             {
-                "action": "double_para",
-                "img": "images/typo_double_para.png"
-            },
-            {
                 "action": "title_para_left",
                 "img": "images/typo_title_para_left.png"
             },
             {
+                "action": "double_para",
+                "img": "images/typo_double_para.png"
+            },
+            {
+                "action": "title_icon",
+                "img": "images/typo_title_icon.png"
+            },
+            {
                 "action": "title_para_button",
                 "img": "images/typo_title_para_button.png"
+            },
+            {
+                "action": "para_button",
+                "img": "images/typo_para_button.png"
+            }
+        ]
+    },
+    {
+        "category": "list",
+        "title": "Listings",
+        "blocks": [
+            {
+                "action": "list_icon",
+                "img": "/images/list_icon.png"
+            },
+            {
+                "action": "double_list_icon",
+                "img": "/images/double_list_icon.png"
             }
         ]
     }
